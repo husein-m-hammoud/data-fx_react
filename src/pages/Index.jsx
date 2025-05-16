@@ -6,12 +6,13 @@ import WhyChooseUs from '../components/WhyChooseUs';
 import PaymentMethods from '../components/PaymentMethods';
 import FAQ from '../components/FAQ';
 import Footer from '../components/Footer';
+import styles from './Index.module.scss';
 
 const Index = () => {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className={styles.page}>
       <Header />
-      <main className="flex-grow">
+      <main className={styles.main}>
         <Banner />
         <WhyChooseUs />
         <PaymentMethods />
