@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Visa, Mastercard, Tether } from 'lucide-react';
+import { CreditCard, PoundSterling, Bitcoin } from 'lucide-react';
 
 const PaymentMethods = () => {
   return (
@@ -16,21 +16,21 @@ const PaymentMethods = () => {
         <div className="flex flex-wrap justify-center gap-x-16 gap-y-10">
           <div className="flex flex-col items-center">
             <div className="bg-white shadow-lg rounded-full p-6 mb-4">
-              <Visa className="h-20 w-20 text-[#1434CB]" />
+              <CreditCard className="h-20 w-20 text-[#1434CB]" />
             </div>
             <span className="font-medium text-lg">Visa</span>
           </div>
 
           <div className="flex flex-col items-center">
             <div className="bg-white shadow-lg rounded-full p-6 mb-4">
-              <Mastercard className="h-20 w-20 text-[#EB001B]" />
+              <CreditCard className="h-20 w-20 text-[#EB001B]" />
             </div>
             <span className="font-medium text-lg">Mastercard</span>
           </div>
 
           <div className="flex flex-col items-center">
             <div className="bg-white shadow-lg rounded-full p-6 mb-4">
-              <Tether className="h-20 w-20 text-[#26A17B]" />
+              <Bitcoin className="h-20 w-20 text-[#26A17B]" />
             </div>
             <span className="font-medium text-lg">Tether (USDT)</span>
           </div>
