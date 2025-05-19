@@ -1,8 +1,7 @@
-
 import React from 'react';
 import styles from './PriceTable.module.scss';
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from './ui/table';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from './ui/card';
+import { Card, CardContent } from './ui/card';
 import { ArrowUp, ArrowDown } from 'lucide-react';
 
 const PriceTable = ({ marketType }) => {
@@ -66,57 +65,53 @@ const PriceTable = ({ marketType }) => {
   const priceData = getPriceData(marketType);
 
   return (
-    <section className="py-16 px-4 bg-gradient-to-b from-white to-slate-50">
-      <div className="max-w-[1200px] mx-auto">
-        <div className="text-center mb-10">
-          <h2 className="text-3xl font-bold text-slate-800 mb-3">Live {marketType} Prices</h2>
-          <p className="text-slate-600 max-w-2xl mx-auto">Real-time prices updated every second. Trade now to take advantage of market movements.</p>
+    <section className={styles.priceTable}>
+      <div className={styles.container}>
+        <div className={styles.header}>
+          <h2 className={styles.title}>Live {marketType} Prices</h2>
+          <p className={styles.description}>Real-time prices updated every second. Trade now to take advantage of market movements.</p>
         </div>
         
-        <Card className="shadow-lg border-slate-200">
-          <CardContent className="p-0 overflow-hidden">
-            <div className="overflow-x-auto">
-              <Table>
-                <TableHeader>
-                  <TableRow className="bg-slate-100">
-                    <TableHead className="font-semibold text-slate-700">Symbol</TableHead>
-                    <TableHead className="font-semibold text-slate-700">Bid</TableHead>
-                    <TableHead className="font-semibold text-slate-700">Ask</TableHead>
-                    <TableHead className="font-semibold text-slate-700">Change (24h)</TableHead>
-                    <TableHead className="font-semibold text-slate-700">Trade</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {priceData.map((item, index) => (
-                    <TableRow 
-                      key={index}
-                      className={`hover:bg-slate-50 border-b ${index % 2 === 0 ? 'bg-white' : 'bg-slate-50/40'}`}
-                    >
-                      <TableCell className="font-medium text-slate-800">{item.symbol}</TableCell>
-                      <TableCell className="font-mono">{item.bid}</TableCell>
-                      <TableCell className="font-mono">{item.ask}</TableCell>
-                      <TableCell>
-                        <div className={`flex items-center font-medium ${item.change.startsWith('+') ? 'text-emerald-600' : 'text-rose-600'}`}>
-                          {item.change.startsWith('+') ? (
-                            <ArrowUp className="h-4 w-4 mr-1" />
-                          ) : (
-                            <ArrowDown className="h-4 w-4 mr-1" />
-                          )}
-                          {item.change}
-                        </div>
-                      </TableCell>
-                      <TableCell>
-                        <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors shadow-sm">
-                          Trade
-                        </button>
-                      </TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </div>
-          </CardContent>
-        </Card>
+        <div className={styles.tableContainer}>
+          <Table>
+            <TableHeader>
+              <TableRow className={styles.tableHeader}>
+                <TableHead className={styles.tableHeaderCell}>Symbol</TableHead>
+                <TableHead className={styles.tableHeaderCell}>Bid</TableHead>
+                <TableHead className={styles.tableHeaderCell}>Ask</TableHead>
+                <TableHead className={styles.tableHeaderCell}>Change (24h)</TableHead>
+                <TableHead className={styles.tableHeaderCell}>Trade</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {priceData.map((item, index) => (
+                <TableRow 
+                  key={index}
+                  className={`${styles.tableRow} ${index % 2 === 0 ? styles.even : styles.odd}`}
+                >
+                  <TableCell className={styles.symbol}>{item.symbol}</TableCell>
+                  <TableCell className={styles.price}>{item.bid}</TableCell>
+                  <TableCell className={styles.price}>{item.ask}</TableCell>
+                  <TableCell>
+                    <div className={`${styles.change} ${item.change.startsWith('+') ? styles.positive : styles.negative}`}>
+                      {item.change.startsWith('+') ? (
+                        <ArrowUp className={styles.arrow} />
+                      ) : (
+                        <ArrowDown className={styles.arrow} />
+                      )}
+                      {item.change}
+                    </div>
+                  </TableCell>
+                  <TableCell>
+                    <button className={styles.tradeButton}>
+                      Trade
+                    </button>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </div>
       </div>
     </section>
   );
