@@ -42,20 +42,20 @@ const Footer = () => {
             <ul className={styles.footerLinks}>
               <li><Link to="/" className={styles.footerLink}>Home</Link></li>
               <li><Link to="/trade" className={styles.footerLink}>Start Trading</Link></li>
-              <li><Link to="/markets" className={styles.footerLink}>Markets</Link></li>
               <li><Link to="/platform" className={styles.footerLink}>Platform</Link></li>
               <li><Link to="/company" className={styles.footerLink}>About Us</Link></li>
             </ul>
           </div>
           
           <div className={styles.linksColumn}>
-            <h3 className={styles.footerTitle}>Resources</h3>
+            <h3 className={styles.footerTitle}>Markets</h3>
             <ul className={styles.footerLinks}>
-              <li><Link to="/education" className={styles.footerLink}>Trading Education</Link></li>
-              <li><Link to="/analysis" className={styles.footerLink}>Market Analysis</Link></li>
-              <li><Link to="/calculator" className={styles.footerLink}>Trading Calculator</Link></li>
-              <li><Link to="/faq" className={styles.footerLink}>FAQ</Link></li>
-              <li><Link to="/support" className={styles.footerLink}>Support Center</Link></li>
+              <li><Link to="/markets/forex" className={styles.footerLink}>Forex</Link></li>
+              <li><Link to="/markets/indices" className={styles.footerLink}>Indices</Link></li>
+              <li><Link to="/markets/commodities" className={styles.footerLink}>Commodities</Link></li>
+              <li><Link to="/markets/energies" className={styles.footerLink}>Energies</Link></li>
+              <li><Link to="/markets/stocks" className={styles.footerLink}>Stocks</Link></li>
+              <li><Link to="/markets/crypto" className={styles.footerLink}>Cryptocurrencies</Link></li>
             </ul>
           </div>
           

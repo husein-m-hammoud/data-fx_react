@@ -45,9 +45,11 @@ const Header = () => {
               <button className={styles.dropdownTrigger}>Markets</button>
               <div className={styles.dropdownContent}>
                 <Link to="/markets/forex" className={styles.dropdownItem}>Forex</Link>
+                <Link to="/markets/indices" className={styles.dropdownItem}>Indices</Link>
+                <Link to="/markets/commodities" className={styles.dropdownItem}>Commodities</Link>
+                <Link to="/markets/energies" className={styles.dropdownItem}>Energies</Link>
                 <Link to="/markets/stocks" className={styles.dropdownItem}>Stocks</Link>
                 <Link to="/markets/crypto" className={styles.dropdownItem}>Cryptocurrencies</Link>
-                <Link to="/markets/commodities" className={styles.dropdownItem}>Commodities</Link>
               </div>
             </div>
             
@@ -75,9 +77,11 @@ const Header = () => {
               </button>
               <div className={`${styles.mobileDropdownContent} ${isMarketsDropdownOpen ? styles.show : ''}`}>
                 <Link to="/markets/forex" className={styles.mobileDropdownItem}>Forex</Link>
+                <Link to="/markets/indices" className={styles.mobileDropdownItem}>Indices</Link>
+                <Link to="/markets/commodities" className={styles.mobileDropdownItem}>Commodities</Link>
+                <Link to="/markets/energies" className={styles.mobileDropdownItem}>Energies</Link>
                 <Link to="/markets/stocks" className={styles.mobileDropdownItem}>Stocks</Link>
                 <Link to="/markets/crypto" className={styles.mobileDropdownItem}>Cryptocurrencies</Link>
-                <Link to="/markets/commodities" className={styles.mobileDropdownItem}>Commodities</Link>
               </div>
             </div>
             

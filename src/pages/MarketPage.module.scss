@@ -1,0 +1,11 @@
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  flex-grow: 1;
+  padding-top: 4rem; /* Offset for fixed header */
+}

@@ -1,0 +1,39 @@
+
+.banner {
+  position: relative;
+  background: linear-gradient(to right, #1a365d, #2a4365);
+  color: #ffffff;
+  padding: 8rem 2rem 4rem;
+  text-align: center;
+}
+
+.backgroundOverlay {
+  position: absolute;
+  inset: 0;
+  background-image: url('https://images.unsplash.com/photo-1607799279861-4dd421887fb3');
+  background-size: cover;
+  background-position: center;
+  mix-blend-mode: overlay;
+  opacity: 0.2;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 10;
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.description {
+  font-size: 1.25rem;
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.7;
+  color: #e2e8f0;
+}
