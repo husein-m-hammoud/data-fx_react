@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { z } from 'zod';
@@ -6,21 +5,42 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import MarketBanner from '../components/MarketBanner';
-import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '../components/ui/form';
+import {
+  Form,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormControl,
+  FormMessage,
+} from '../components/ui/form';
 import { Input } from '../components/ui/input';
 import { Button } from '../components/ui/button';
-import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '../components/ui/select';
+import {
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectItem,
+} from '../components/ui/select';
 import { Checkbox } from '../components/ui/checkbox';
 import { toast } from 'sonner';
 import styles from './Trade.module.scss';
 
 const formSchema = z.object({
-  firstName: z.string().min(2, { message: 'First name must be at least 2 characters.' }),
-  lastName: z.string().min(2, { message: 'Last name must be at least 2 characters.' }),
+  firstName: z
+    .string()
+    .min(2, { message: 'First name must be at least 2 characters.' }),
+  lastName: z
+    .string()
+    .min(2, { message: 'Last name must be at least 2 characters.' }),
   email: z.string().email({ message: 'Please enter a valid email address.' }),
   countryCode: z.string().min(1, { message: 'Please select a country code.' }),
-  phoneNumber: z.string().min(5, { message: 'Please enter a valid phone number.' }),
-  contactMethods: z.array(z.string()).min(1, { message: 'Please select at least one contact method.' }),
+  phoneNumber: z
+    .string()
+    .min(5, { message: 'Please enter a valid phone number.' }),
+  contactMethods: z
+    .array(z.string())
+    .min(1, { message: 'Please select at least one contact method.' }),
 });
 
 const countryCodes = [
@@ -51,7 +71,6 @@ const Trade = () => {
 
   const onSubmit = (data) => {
     console.log('Form submitted:', data);
-    // Here you would typically send the data to your API
     toast.success('Account created successfully!', {
       description: 'We will contact you shortly.',
     });
@@ -61,41 +80,56 @@ const Trade = () => {
   return (
     <>
       <Header />
-      <MarketBanner 
-        title="Open Your Real Trading Account" 
-        description="Fill out the form below to create your account and start trading in minutes."
+      <MarketBanner
+        title='Open Your Real Trading Account'
+        description='Fill out the form below to create your account and start trading in minutes.'
       />
-      
+
       <div className={styles.tradeContent}>
         <div className={styles.container}>
           <div className={styles.formWrapper}>
             <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className={styles.form}>
+              <form
+                onSubmit={form.handleSubmit(onSubmit)}
+                className={styles.form}
+              >
                 <div className={styles.formRow}>
                   <FormField
                     control={form.control}
-                    name="firstName"
+                    name='firstName'
                     render={({ field }) => (
                       <FormItem className={styles.formItem}>
-                        <FormLabel>First Name</FormLabel>
+                        <FormLabel className={styles.formLabel}>
+                          First Name
+                        </FormLabel>
                         <FormControl>
-                          <Input placeholder="Enter your first name" {...field} />
+                          <Input
+                            className={styles.formInput}
+                            placeholder='Enter your first name'
+                            {...field}
+                          />
                         </FormControl>
-                        <FormMessage />
+                        <FormMessage className={styles.formMessage} />
                       </FormItem>
                     )}
                   />
 
                   <FormField
                     control={form.control}
-                    name="lastName"
+                    name='lastName'
                     render={({ field }) => (
                       <FormItem className={styles.formItem}>
-                        <FormLabel>Last Name</FormLabel>
+                        <FormLabel className={styles.formLabel}>
+                          Last Name
+                        </FormLabel>
                         <FormControl>
-                          <Input placeholder="Enter your last name" {...field} />
+                          <Input
+                            className={styles.formInput}
+                            placeholder='Enter your last name'
+                            {...field}
+                          />
                         </FormControl>
-                        <FormMessage />
+                        <FormMessage className={styles.formMessage} />
                       </FormItem>
                     )}
                   />
@@ -103,14 +137,19 @@ const Trade = () => {
 
                 <FormField
                   control={form.control}
-                  name="email"
+                  name='email'
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Email</FormLabel>
+                      <FormLabel className={styles.formLabel}>Email</FormLabel>
                       <FormControl>
-                        <Input type="email" placeholder="Enter your email address" {...field} />
+                        <Input
+                          className={styles.formInput}
+                          type='email'
+                          placeholder='Enter your email address'
+                          {...field}
+                        />
                       </FormControl>
-                      <FormMessage />
+                      <FormMessage className={styles.formMessage} />
                     </FormItem>
                   )}
                 />
@@ -118,58 +157,72 @@ const Trade = () => {
                 <div className={styles.phoneGroup}>
                   <FormField
                     control={form.control}
-                    name="countryCode"
+                    name='countryCode'
                     render={({ field }) => (
                       <FormItem className={styles.countryCode}>
-                        <FormLabel>Country Code</FormLabel>
-                        <Select 
-                          onValueChange={field.onChange} 
+                        <FormLabel className={styles.formLabel}>
+                          Country Code
+                        </FormLabel>
+                        <Select
+                          onValueChange={field.onChange}
                           defaultValue={field.value}
                         >
                           <FormControl>
-                            <SelectTrigger>
-                              <SelectValue placeholder="Select" />
+                            <SelectTrigger className={styles.selectTrigger}>
+                              <SelectValue placeholder='Select' />
                             </SelectTrigger>
                           </FormControl>
-                          <SelectContent>
+                          <SelectContent className={styles.selectContent}>
                             {countryCodes.map((country) => (
-                              <SelectItem key={country.value} value={country.value}>
+                              <SelectItem
+                                className={styles.selectItem}
+                                key={country.value}
+                                value={country.value}
+                              >
                                 {country.label}
                               </SelectItem>
                             ))}
                           </SelectContent>
                         </Select>
-                        <FormMessage />
+                        <FormMessage className={styles.formMessage} />
                       </FormItem>
                     )}
                   />
 
                   <FormField
                     control={form.control}
-                    name="phoneNumber"
+                    name='phoneNumber'
                     render={({ field }) => (
                       <FormItem className={styles.phoneNumber}>
-                        <FormLabel>Phone Number</FormLabel>
+                        <FormLabel className={styles.formLabel}>
+                          Phone Number
+                        </FormLabel>
                         <FormControl>
-                          <Input placeholder="Enter your phone number" {...field} />
+                          <Input
+                            className={styles.formInput}
+                            placeholder='Enter your phone number'
+                            {...field}
+                          />
                         </FormControl>
-                        <FormMessage />
+                        <FormMessage className={styles.formMessage} />
                       </FormItem>
                     )}
                   />
                 </div>
 
                 <div className={styles.contactMethodsGroup}>
-                  <FormLabel className={styles.contactMethodsLabel}>Preferred Contact Method</FormLabel>
+                  <FormLabel className={styles.contactMethodsLabel}>
+                    Preferred Contact Method
+                  </FormLabel>
                   <div className={styles.checkboxGroup}>
                     <FormField
                       control={form.control}
-                      name="contactMethods"
+                      name='contactMethods'
                       render={() => (
                         <FormItem className={styles.checkboxItem}>
                           <div className={styles.checkboxWrapper}>
                             <Controller
-                              name="contactMethods"
+                              name='contactMethods'
                               control={form.control}
                               render={({ field }) => {
                                 return (
@@ -177,62 +230,94 @@ const Trade = () => {
                                     <div className={styles.checkboxContainer}>
                                       <FormControl>
                                         <Checkbox
-                                          checked={field.value?.includes('email')}
+                                          className={styles.checkbox}
+                                          checked={field.value?.includes(
+                                            'email'
+                                          )}
                                           onCheckedChange={(checked) => {
                                             return checked
-                                              ? field.onChange([...field.value, 'email'])
+                                              ? field.onChange([
+                                                  ...field.value,
+                                                  'email',
+                                                ])
                                               : field.onChange(
                                                   field.value?.filter(
                                                     (value) => value !== 'email'
                                                   )
-                                                )
+                                                );
                                           }}
                                         />
                                       </FormControl>
-                                      <FormLabel className={styles.checkboxLabel}>Email</FormLabel>
+                                      <FormLabel
+                                        className={styles.checkboxLabel}
+                                      >
+                                        Email
+                                      </FormLabel>
                                     </div>
-                                    
+
                                     <div className={styles.checkboxContainer}>
                                       <FormControl>
                                         <Checkbox
-                                          checked={field.value?.includes('whatsapp')}
+                                          className={styles.checkbox}
+                                          checked={field.value?.includes(
+                                            'whatsapp'
+                                          )}
                                           onCheckedChange={(checked) => {
                                             return checked
-                                              ? field.onChange([...field.value, 'whatsapp'])
+                                              ? field.onChange([
+                                                  ...field.value,
+                                                  'whatsapp',
+                                                ])
                                               : field.onChange(
                                                   field.value?.filter(
-                                                    (value) => value !== 'whatsapp'
+                                                    (value) =>
+                                                      value !== 'whatsapp'
                                                   )
-                                                )
+                                                );
                                           }}
                                         />
                                       </FormControl>
-                                      <FormLabel className={styles.checkboxLabel}>WhatsApp</FormLabel>
+                                      <FormLabel
+                                        className={styles.checkboxLabel}
+                                      >
+                                        WhatsApp
+                                      </FormLabel>
                                     </div>
-                                    
+
                                     <div className={styles.checkboxContainer}>
                                       <FormControl>
                                         <Checkbox
-                                          checked={field.value?.includes('telegram')}
+                                          className={styles.checkbox}
+                                          checked={field.value?.includes(
+                                            'telegram'
+                                          )}
                                           onCheckedChange={(checked) => {
                                             return checked
-                                              ? field.onChange([...field.value, 'telegram'])
+                                              ? field.onChange([
+                                                  ...field.value,
+                                                  'telegram',
+                                                ])
                                               : field.onChange(
                                                   field.value?.filter(
-                                                    (value) => value !== 'telegram'
+                                                    (value) =>
+                                                      value !== 'telegram'
                                                   )
-                                                )
+                                                );
                                           }}
                                         />
                                       </FormControl>
-                                      <FormLabel className={styles.checkboxLabel}>Telegram</FormLabel>
+                                      <FormLabel
+                                        className={styles.checkboxLabel}
+                                      >
+                                        Telegram
+                                      </FormLabel>
                                     </div>
                                   </>
-                                )
+                                );
                               }}
                             />
                           </div>
-                          <FormMessage />
+                          <FormMessage className={styles.formMessage} />
                         </FormItem>
                       )}
                     />
@@ -240,7 +325,7 @@ const Trade = () => {
                 </div>
 
                 <div className={styles.submitContainer}>
-                  <Button type="submit" className={styles.submitButton}>
+                  <Button type='submit' className={styles.submitButton}>
                     Create Account
                   </Button>
                 </div>
@@ -249,7 +334,7 @@ const Trade = () => {
           </div>
         </div>
       </div>
-      
+
       <Footer />
     </>
   );
