@@ -108,56 +108,6 @@ const Company = () => {
               </div>
             </div>
           </section>
-          
-          <section className={styles.section}>
-            <h2 className={styles.sectionTitle}>Our Leadership</h2>
-            <div className={styles.leadership}>
-              <div className={styles.leaderCard}>
-                <div className={styles.leaderPhoto}>
-                  <img 
-                    src="https://images.unsplash.com/photo-1560250097-0b93528c311a" 
-                    alt="CEO" 
-                    className={styles.leaderImage}
-                  />
-                </div>
-                <h3 className={styles.leaderName}>Alexander Chen</h3>
-                <p className={styles.leaderPosition}>Chief Executive Officer</p>
-                <p className={styles.leaderBio}>
-                  Former investment banker with 15+ years of experience in financial markets. Passionate about financial inclusion and technology.
-                </p>
-              </div>
-              
-              <div className={styles.leaderCard}>
-                <div className={styles.leaderPhoto}>
-                  <img 
-                    src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2" 
-                    alt="CTO" 
-                    className={styles.leaderImage}
-                  />
-                </div>
-                <h3 className={styles.leaderName}>Sophia Rodriguez</h3>
-                <p className={styles.leaderPosition}>Chief Technology Officer</p>
-                <p className={styles.leaderBio}>
-                  Tech innovator with extensive background in fintech platforms. Previously led development teams at major financial institutions.
-                </p>
-              </div>
-              
-              <div className={styles.leaderCard}>
-                <div className={styles.leaderPhoto}>
-                  <img 
-                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d" 
-                    alt="COO" 
-                    className={styles.leaderImage}
-                  />
-                </div>
-                <h3 className={styles.leaderName}>Marcus Johnson</h3>
-                <p className={styles.leaderPosition}>Chief Operating Officer</p>
-                <p className={styles.leaderBio}>
-                  Operations expert specialized in scaling financial services globally. Focused on creating seamless trading experiences.
-                </p>
-              </div>
-            </div>
-          </section>
         </div>
       </div>
       

@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import StockTicker from './StockTicker';
 import styles from './Banner.module.scss';
 
@@ -17,9 +18,9 @@ const Banner = () => {
               Access global markets with a reliable trading platform offering advanced tools and competitive spreads.
             </p>
             <div className={styles.buttons}>
-              <button className={styles.primaryButton}>
+              <Link to="/trade" className={styles.primaryButton}>
                 Start Trading Now <ArrowRight className={styles.buttonIcon} />
-              </button>
+              </Link>
               <button className={styles.secondaryButton}>
                 Try Free Demo
               </button>

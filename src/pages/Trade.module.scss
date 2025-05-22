@@ -1,0 +1,118 @@
+
+.tradeContent {
+  background-color: #f8fafc;
+  padding: 4rem 2rem;
+  
+  @media (max-width: 768px) {
+    padding: 3rem 1rem;
+  }
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.formWrapper {
+  background-color: #ffffff;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  padding: 2.5rem;
+  
+  @media (max-width: 640px) {
+    padding: 1.5rem;
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  
+  @media (max-width: 640px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.formItem {
+  flex: 1;
+}
+
+.phoneGroup {
+  display: flex;
+  gap: 1rem;
+  
+  @media (max-width: 640px) {
+    flex-direction: column;
+  }
+}
+
+.countryCode {
+  width: 30%;
+  
+  @media (max-width: 640px) {
+    width: 100%;
+  }
+}
+
+.phoneNumber {
+  flex: 1;
+}
+
+.contactMethodsGroup {
+  margin-top: 0.5rem;
+}
+
+.contactMethodsLabel {
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.checkboxGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 2rem;
+}
+
+.checkboxItem {
+  width: 100%;
+}
+
+.checkboxWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem 2rem;
+}
+
+.checkboxContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.checkboxLabel {
+  cursor: pointer;
+}
+
+.submitContainer {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.submitButton {
+  min-width: 200px;
+  background: linear-gradient(to right, #3b82f6, #2563eb);
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+  }
+}
