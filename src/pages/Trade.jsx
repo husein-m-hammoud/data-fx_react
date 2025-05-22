@@ -11,6 +11,7 @@ import { Input } from '../components/ui/input';
 import { Button } from '../components/ui/button';
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '../components/ui/select';
 import { Checkbox } from '../components/ui/checkbox';
+import { toast } from 'sonner';
 import styles from './Trade.module.scss';
 
 const formSchema = z.object({
@@ -51,7 +52,9 @@ const Trade = () => {
   const onSubmit = (data) => {
     console.log('Form submitted:', data);
     // Here you would typically send the data to your API
-    alert('Form submitted successfully! We will contact you shortly.');
+    toast.success('Account created successfully!', {
+      description: 'We will contact you shortly.',
+    });
     form.reset();
   };
 

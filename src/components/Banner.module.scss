@@ -11,11 +11,11 @@
 .backgroundOverlay {
   position: absolute;
   inset: 0;
-  background-image: url('https://images.unsplash.com/photo-1531297484001-80022131f5a1');
+  background-image: url('https://images.unsplash.com/photo-1488590528505-98d2b5aba04b');
   background-size: cover;
   background-position: center;
   mix-blend-mode: overlay;
-  opacity: 0.2;
+  opacity: 0.3;
 }
 
 .wrapper {
@@ -79,10 +79,11 @@
   border-radius: 0.375rem;
   border: none;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, transform 0.2s;
 
   &:hover {
     background-color: #2563eb;
+    transform: translateY(-2px);
   }
 }
 
@@ -94,11 +95,12 @@
   padding: 0.75rem 1.5rem;
   border-radius: 0.375rem;
   cursor: pointer;
-  transition: background-color 0.3s, color 0.3s;
+  transition: background-color 0.3s, color 0.3s, transform 0.2s;
 
   &:hover {
     background-color: #ffffff;
     color: #1a365d;
+    transform: translateY(-2px);
   }
 }
 
