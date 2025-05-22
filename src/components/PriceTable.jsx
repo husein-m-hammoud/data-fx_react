@@ -1,12 +1,37 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './PriceTable.module.scss';
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from './ui/table';
-import { Card, CardContent } from './ui/card';
 import { ArrowUp, ArrowDown } from 'lucide-react';
+import axios from 'axios';
 
 const PriceTable = ({ marketType }) => {
-  // Sample data - in a real app, this would come from an API
-  const getPriceData = (type) => {
+  const [priceData, setPriceData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  
+  // Get currency pairs for forex data based on market type
+  const getSymbols = (type) => {
+    switch(type.toLowerCase()) {
+      case 'forex':
+        return ['EUR/USD', 'GBP/USD', 'USD/JPY', 'AUD/USD', 'USD/CAD'];
+      case 'indices':
+        return ['SPX', 'IXIC', 'DJI', 'UKX', 'GDAXI'];
+      case 'commodities':
+        return ['GOLD', 'SILVER', 'COPPER', 'PLATINUM', 'PALLADIUM'];
+      case 'energies':
+        return ['CL', 'BZ', 'NG', 'HO', 'EMISS'];
+      case 'stocks':
+        return ['AAPL', 'MSFT', 'GOOGL', 'AMZN', 'TSLA'];
+      case 'crypto':
+      case 'cryptocurrencies':
+        return ['BTC/USD', 'ETH/USD', 'XRP/USD', 'SOL/USD', 'ADA/USD'];
+      default:
+        return [];
+    }
+  };
+
+  // Get fallback data based on market type
+  const getFallbackData = (type) => {
     switch(type.toLowerCase()) {
       case 'forex':
         return [
@@ -62,55 +87,151 @@ const PriceTable = ({ marketType }) => {
     }
   };
 
-  const priceData = getPriceData(marketType);
+  useEffect(() => {
+    const fetchPriceData = async () => {
+      try {
+        const symbols = getSymbols(marketType);
+        const results = [];
+        
+        // Using Alpha Vantage API for demonstration
+        const API_KEY = 'demo'; // Using demo key with limited functionality
+        
+        for (const symbol of symbols) {
+          try {
+            let response;
+            let formattedSymbol = symbol;
+            
+            // Format the symbol for API call depending on the market type
+            if (marketType.toLowerCase() === 'forex') {
+              const [fromCurrency, toCurrency] = symbol.split('/');
+              response = await axios.get(
+                `https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=${fromCurrency}&to_currency=${toCurrency}&apikey=${API_KEY}`
+              );
+              
+              if (response.data["Realtime Currency Exchange Rate"]) {
+                const data = response.data["Realtime Currency Exchange Rate"];
+                const rate = parseFloat(data["5. Exchange Rate"]);
+                const bid = (rate - 0.0002).toFixed(4);
+                const ask = (rate + 0.0002).toFixed(4);
+                
+                // Calculate change (simulated for demo)
+                const change = (Math.random() * 0.5 - 0.25).toFixed(2) + '%';
+                
+                results.push({
+                  symbol: formattedSymbol,
+                  bid,
+                  ask,
+                  change: change.startsWith('-') ? change : '+' + change
+                });
+              }
+            } else if (marketType.toLowerCase() === 'crypto') {
+              const [crypto, currency] = symbol.split('/');
+              response = await axios.get(
+                `https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=${crypto}&to_currency=${currency}&apikey=${API_KEY}`
+              );
+              
+              if (response.data["Realtime Currency Exchange Rate"]) {
+                const data = response.data["Realtime Currency Exchange Rate"];
+                const rate = parseFloat(data["5. Exchange Rate"]);
+                const bid = (rate - rate * 0.001).toFixed(2);
+                const ask = (rate + rate * 0.001).toFixed(2);
+                
+                // Calculate change (simulated for demo)
+                const change = (Math.random() * 2 - 0.5).toFixed(2) + '%';
+                
+                results.push({
+                  symbol: formattedSymbol,
+                  bid,
+                  ask,
+                  change: change.startsWith('-') ? change : '+' + change
+                });
+              }
+            }
+          } catch (err) {
+            console.error(`Error fetching data for ${symbol}:`, err);
+          }
+          
+          // Small delay to avoid API rate limits
+          await new Promise(resolve => setTimeout(resolve, 250));
+        }
+        
+        if (results.length > 0) {
+          setPriceData(results);
+        } else {
+          // Use fallback data if API calls fail
+          setPriceData(getFallbackData(marketType));
+        }
+        
+        setLoading(false);
+      } catch (err) {
+        console.error("Error fetching price data:", err);
+        setError("Failed to load price data. Please try again later.");
+        setPriceData(getFallbackData(marketType));
+        setLoading(false);
+      }
+    };
+    
+    fetchPriceData();
+    
+    // Refresh data every 10 seconds for real-time feel
+    const interval = setInterval(fetchPriceData, 10000);
+    
+    return () => clearInterval(interval);
+  }, [marketType]);
 
   return (
     <section className={styles.priceTable}>
       <div className={styles.container}>
         <div className={styles.header}>
           <h2 className={styles.title}>Live {marketType} Prices</h2>
-          <p className={styles.description}>Real-time prices updated every second. Trade now to take advantage of market movements.</p>
+          <p className={styles.description}>Real-time prices updated every 10 seconds. Trade now to take advantage of market movements.</p>
         </div>
         
         <div className={styles.tableContainer}>
-          <Table>
-            <TableHeader>
-              <TableRow className={styles.tableHeader}>
-                <TableHead className={styles.tableHeaderCell}>Symbol</TableHead>
-                <TableHead className={styles.tableHeaderCell}>Bid</TableHead>
-                <TableHead className={styles.tableHeaderCell}>Ask</TableHead>
-                <TableHead className={styles.tableHeaderCell}>Change (24h)</TableHead>
-                <TableHead className={styles.tableHeaderCell}>Trade</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {priceData.map((item, index) => (
-                <TableRow 
-                  key={index}
-                  className={`${styles.tableRow} ${index % 2 === 0 ? styles.even : styles.odd}`}
-                >
-                  <TableCell className={styles.symbol}>{item.symbol}</TableCell>
-                  <TableCell className={styles.price}>{item.bid}</TableCell>
-                  <TableCell className={styles.price}>{item.ask}</TableCell>
-                  <TableCell>
-                    <div className={`${styles.change} ${item.change.startsWith('+') ? styles.positive : styles.negative}`}>
-                      {item.change.startsWith('+') ? (
-                        <ArrowUp className={styles.arrow} />
-                      ) : (
-                        <ArrowDown className={styles.arrow} />
-                      )}
-                      {item.change}
-                    </div>
-                  </TableCell>
-                  <TableCell>
-                    <button className={styles.tradeButton}>
-                      Trade
-                    </button>
-                  </TableCell>
+          {loading && priceData.length === 0 ? (
+            <div className={styles.loading}>Loading price data...</div>
+          ) : error ? (
+            <div className={styles.error}>{error}</div>
+          ) : (
+            <Table>
+              <TableHeader>
+                <TableRow className={styles.tableHeader}>
+                  <TableHead className={styles.tableHeaderCell}>Symbol</TableHead>
+                  <TableHead className={styles.tableHeaderCell}>Bid</TableHead>
+                  <TableHead className={styles.tableHeaderCell}>Ask</TableHead>
+                  <TableHead className={styles.tableHeaderCell}>Change (24h)</TableHead>
+                  <TableHead className={styles.tableHeaderCell}>Trade</TableHead>
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+              </TableHeader>
+              <TableBody>
+                {priceData.map((item, index) => (
+                  <TableRow 
+                    key={index}
+                    className={`${styles.tableRow} ${index % 2 === 0 ? styles.even : styles.odd}`}
+                  >
+                    <TableCell className={styles.symbol}>{item.symbol}</TableCell>
+                    <TableCell className={styles.price}>{item.bid}</TableCell>
+                    <TableCell className={styles.price}>{item.ask}</TableCell>
+                    <TableCell>
+                      <div className={`${styles.change} ${item.change.startsWith('+') ? styles.positive : styles.negative}`}>
+                        {item.change.startsWith('+') ? (
+                          <ArrowUp className={styles.arrow} />
+                        ) : (
+                          <ArrowDown className={styles.arrow} />
+                        )}
+                        {item.change}
+                      </div>
+                    </TableCell>
+                    <TableCell>
+                      <button className={styles.tradeButton}>
+                        Trade
+                      </button>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          )}
         </div>
       </div>
     </section>

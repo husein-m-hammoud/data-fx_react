@@ -69,3 +69,20 @@
   padding: 0.75rem;
   color: #f56565;
 }
+
+.loading {
+  color: #a0aec0;
+  padding: 1rem;
+  text-align: center;
+  font-style: italic;
+}
+
+.error {
+  color: #f56565;
+  padding: 1rem;
+  text-align: center;
+  font-style: italic;
+  border: 1px solid #f56565;
+  border-radius: 0.25rem;
+  margin: 0.5rem 0;
+}
