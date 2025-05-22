@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import { finnhub } from 'finnhub';
 import styles from './StockTicker.module.scss';
 
 const StockTicker = () => {
@@ -14,64 +14,83 @@ const StockTicker = () => {
   useEffect(() => {
     const fetchStockData = async () => {
       try {
-        // Use a free stock API (Alpha Vantage)
-        const API_KEY = 'demo'; // Using demo key - limited functionality
+        // Initialize Finnhub client
+        const finnhubClient = new finnhub.DefaultApi();
+        finnhubClient.apiKey = "demo"; // Using demo key - limited functionality
+        
         const results = [];
 
         // Fetch data for each symbol
-        for (const symbol of symbols.slice(0, 8)) { // Limit to prevent API rate limiting
+        for (const symbol of symbols.slice(0, 7)) { // Exclude BTC/USD for now as it requires different handling
           try {
-            let response;
-            if (symbol === 'BTC/USD') {
-              response = await axios.get(
-                `https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=BTC&to_currency=USD&apikey=${API_KEY}`
-              );
-              
-              if (response.data["Realtime Currency Exchange Rate"]) {
-                const data = response.data["Realtime Currency Exchange Rate"];
-                const price = parseFloat(data["5. Exchange Rate"]).toFixed(2);
-                const prevPrice = parseFloat(price) - (Math.random() * 10).toFixed(2); // Simulate previous price
-                const change = (parseFloat(price) - prevPrice).toFixed(2);
-                const changePercent = ((parseFloat(change) / prevPrice) * 100).toFixed(2) + '%';
-                
-                results.push({
-                  symbol: 'BTC/USD',
-                  price: price,
-                  change: change > 0 ? '+' + change : change,
-                  changePercent: change > 0 ? '+' + changePercent : changePercent,
-                  color: change > 0 ? 'positive' : 'negative'
+            // Use setTimeout to prevent rate limiting
+            const data = await new Promise((resolve) => {
+              setTimeout(() => {
+                finnhubClient.quote(symbol, (error, data) => {
+                  if (error) {
+                    console.error(`Error fetching ${symbol}:`, error);
+                    resolve(null);
+                  } else {
+                    resolve(data);
+                  }
                 });
-              }
-            } else {
-              response = await axios.get(
-                `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${symbol}&apikey=${API_KEY}`
-              );
+              }, 250 * results.length); // Stagger requests
+            });
+            
+            if (data) {
+              const price = data.c.toFixed(2);
+              const change = (data.c - data.pc).toFixed(2);
+              const changePercent = ((change / data.pc) * 100).toFixed(2) + '%';
               
-              if (response.data["Global Quote"]) {
-                const quote = response.data["Global Quote"];
-                const price = parseFloat(quote["05. price"]).toFixed(2);
-                const change = parseFloat(quote["09. change"]).toFixed(2);
-                const changePercent = quote["10. change percent"].trim();
-                
-                results.push({
-                  symbol,
-                  price,
-                  change: change > 0 ? '+' + change : change,
-                  changePercent: change > 0 ? '+' + changePercent : changePercent,
-                  color: change > 0 ? 'positive' : 'negative'
-                });
-              }
+              results.push({
+                symbol,
+                price,
+                change: change > 0 ? '+' + change : change,
+                changePercent: change > 0 ? '+' + changePercent : changePercent,
+                color: change > 0 ? 'positive' : 'negative'
+              });
             }
           } catch (err) {
-            console.error(`Error fetching data for ${symbol}:`, err);
+            console.error(`Error processing data for ${symbol}:`, err);
           }
-          
-          // Small delay to avoid API rate limits
-          await new Promise(resolve => setTimeout(resolve, 250));
+        }
+        
+        // Special handling for BTC/USD (crypto)
+        try {
+          await new Promise((resolve) => {
+            setTimeout(() => {
+              finnhubClient.cryptoCandles("BINANCE:BTCUSDT", "D", 
+                Math.floor(Date.now()/1000) - 86400, 
+                Math.floor(Date.now()/1000), 
+                (error, data) => {
+                  if (error || !data || data.s !== 'ok') {
+                    console.error("Error fetching BTC data:", error);
+                    resolve();
+                  } else {
+                    const lastIndex = data.c.length - 1;
+                    const price = data.c[lastIndex].toFixed(2);
+                    const prevPrice = data.o[lastIndex];
+                    const change = (data.c[lastIndex] - prevPrice).toFixed(2);
+                    const changePercent = ((change / prevPrice) * 100).toFixed(2) + '%';
+                    
+                    results.push({
+                      symbol: 'BTC/USD',
+                      price,
+                      change: change > 0 ? '+' + change : change,
+                      changePercent: change > 0 ? '+' + changePercent : changePercent,
+                      color: change > 0 ? 'positive' : 'negative'
+                    });
+                    resolve();
+                  }
+              });
+            }, 250 * results.length);
+          });
+        } catch (err) {
+          console.error("Error processing BTC data:", err);
         }
 
-        // If API calls failed or returned no data, use fallback data
-        if (results.length === 0) {
+        // If library calls failed or returned insufficient data, use fallback data
+        if (results.length < 4) {
           setStocks([
             { symbol: 'AAPL', price: '182.63', change: '+1.25', changePercent: '0.69%', color: 'positive' },
             { symbol: 'MSFT', price: '337.21', change: '-0.85', changePercent: '-0.25%', color: 'negative' },

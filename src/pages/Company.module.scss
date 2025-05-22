@@ -1,0 +1,210 @@
+
+.companyContent {
+  background-color: #f8fafc;
+  padding: 5rem 2rem;
+  
+  @media (max-width: 768px) {
+    padding: 3rem 1rem;
+  }
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section {
+  margin-bottom: 5rem;
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.sectionTitle {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: #1a202c;
+  margin-bottom: 2rem;
+  position: relative;
+  display: inline-block;
+  
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: -0.75rem;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background-color: #3b82f6;
+    border-radius: 3px;
+  }
+}
+
+.sectionContent {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  
+  @media (min-width: 768px) {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.textContent {
+  flex: 1;
+}
+
+.paragraph {
+  color: #4a5568;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.imageContainer {
+  flex: 1;
+  
+  @media (min-width: 768px) {
+    order: 2;
+  }
+  
+  .section:nth-child(even) & {
+    @media (min-width: 768px) {
+      order: 1;
+    }
+  }
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.valuePillars {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  
+  @media (min-width: 640px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.pillar {
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.08);
+  }
+}
+
+.pillarIcon {
+  background-color: rgba(59, 130, 246, 0.1);
+  color: #3b82f6;
+  width: 3.5rem;
+  height: 3.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  margin-bottom: 1.5rem;
+}
+
+.icon {
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+.pillarTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1a202c;
+  margin-bottom: 0.75rem;
+}
+
+.pillarText {
+  color: #64748b;
+  line-height: 1.6;
+}
+
+.leadership {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  
+  @media (min-width: 640px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.leaderCard {
+  background-color: #ffffff;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.08);
+  }
+}
+
+.leaderPhoto {
+  width: 100%;
+  height: 15rem;
+  overflow: hidden;
+}
+
+.leaderImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+  
+  .leaderCard:hover & {
+    transform: scale(1.05);
+  }
+}
+
+.leaderName {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1a202c;
+  margin: 1.5rem 1.5rem 0.5rem;
+}
+
+.leaderPosition {
+  font-size: 0.95rem;
+  color: #3b82f6;
+  font-weight: 500;
+  margin: 0 1.5rem 1rem;
+}
+
+.leaderBio {
+  color: #64748b;
+  line-height: 1.6;
+  padding: 0 1.5rem 1.5rem;
+  font-size: 0.95rem;
+}
