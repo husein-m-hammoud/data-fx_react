@@ -1,14 +1,13 @@
-
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Index from "./pages/Index";
-import MarketPage from "./pages/MarketPage";
-import Company from "./pages/Company";
-import Trade from "./pages/Trade";
-import NotFound from "./pages/NotFound";
+import { Toaster } from '@/components/ui/toaster';
+import { Toaster as Sonner } from '@/components/ui/sonner';
+import { TooltipProvider } from '@/components/ui/tooltip';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Index from './pages/Index';
+import MarketPage from './pages/MarketPage';
+import Company from './pages/Company';
+import Trade from './pages/Trade';
+import NotFound from './pages/NotFound';
 
 const queryClient = new QueryClient();
 
@@ -19,12 +18,12 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/markets/:marketType" element={<MarketPage />} />
-          <Route path="/company" element={<Company />} />
-          <Route path="/trade" element={<Trade />} />
+          <Route path='/' element={<Index />} />
+          <Route path='/markets/:marketType' element={<MarketPage />} />
+          <Route path='/company' element={<Company />} />
+          <Route path='/trade' element={<Trade />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
+          <Route path='*' element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>

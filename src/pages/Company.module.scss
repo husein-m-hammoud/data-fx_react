@@ -1,8 +1,7 @@
-
 .companyContent {
   background-color: #f8fafc;
   padding: 5rem 2rem;
-  
+
   @media (max-width: 768px) {
     padding: 3rem 1rem;
   }
@@ -15,7 +14,7 @@
 
 .section {
   margin-bottom: 5rem;
-  
+
   &:last-child {
     margin-bottom: 0;
   }
@@ -28,7 +27,7 @@
   margin-bottom: 2rem;
   position: relative;
   display: inline-block;
-  
+
   &:after {
     content: '';
     position: absolute;
@@ -45,7 +44,7 @@
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  
+
   @media (min-width: 768px) {
     flex-direction: row;
     align-items: center;
@@ -61,7 +60,7 @@
   line-height: 1.7;
   margin-bottom: 1.5rem;
   font-size: 1.1rem;
-  
+
   &:last-child {
     margin-bottom: 0;
   }
@@ -69,11 +68,11 @@
 
 .imageContainer {
   flex: 1;
-  
+
   @media (min-width: 768px) {
     order: 2;
   }
-  
+
   .section:nth-child(even) & {
     @media (min-width: 768px) {
       order: 1;
@@ -82,7 +81,7 @@
 }
 
 .image {
-  width: 100%;
+  width: 80%;
   height: auto;
   border-radius: 0.75rem;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
@@ -92,11 +91,11 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: 2rem;
-  
+
   @media (min-width: 640px) {
     grid-template-columns: repeat(2, 1fr);
   }
-  
+
   @media (min-width: 1024px) {
     grid-template-columns: repeat(4, 1fr);
   }
@@ -108,7 +107,7 @@
   border-radius: 0.75rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  
+
   &:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.08);
@@ -148,11 +147,11 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: 2.5rem;
-  
+
   @media (min-width: 640px) {
     grid-template-columns: repeat(2, 1fr);
   }
-  
+
   @media (min-width: 1024px) {
     grid-template-columns: repeat(3, 1fr);
   }
@@ -164,7 +163,7 @@
   overflow: hidden;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  
+
   &:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.08);
@@ -182,7 +181,7 @@
   height: 100%;
   object-fit: cover;
   transition: transform 0.5s ease;
-  
+
   .leaderCard:hover & {
     transform: scale(1.05);
   }

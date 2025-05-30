@@ -1,4 +1,3 @@
-
 .container {
   padding: 5rem 0;
   background-color: #f9fafb;
@@ -88,4 +87,68 @@
 .featureDescription {
   color: #6b7280;
   text-align: center;
+}
+
+.educationSection {
+  background-color: #ffffff;
+  padding: 5rem 0;
+}
+
+.educationContent {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  align-items: center;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    gap: 4rem;
+  }
+}
+
+.educationText {
+  flex: 1;
+
+  @media (min-width: 768px) {
+    order: 1;
+  }
+}
+
+.videoContainer {
+  flex: 1;
+
+  @media (min-width: 768px) {
+    order: 2;
+  }
+}
+
+.educationVideo {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.educationParagraph {
+  color: #4a5568;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.socialLink {
+  color: #3b82f6;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: #2563eb;
+    text-decoration: underline;
+  }
 }
