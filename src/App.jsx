@@ -8,6 +8,8 @@ import MarketPage from './pages/MarketPage';
 import Company from './pages/Company';
 import Trade from './pages/Trade';
 import NotFound from './pages/NotFound';
+import Platform from './pages/Platform';
+import Partners from './pages/Partners';
 
 const queryClient = new QueryClient();
 
@@ -22,6 +24,8 @@ const App = () => (
           <Route path='/markets/:marketType' element={<MarketPage />} />
           <Route path='/company' element={<Company />} />
           <Route path='/trade' element={<Trade />} />
+          <Route path='/platform' element={<Platform />} />
+          <Route path='/partners' element={<Partners />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path='*' element={<NotFound />} />
         </Routes>
