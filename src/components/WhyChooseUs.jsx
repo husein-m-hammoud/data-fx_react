@@ -1,7 +1,9 @@
 import React from 'react';
 import styles from './WhyChooseUs.module.scss';
+import { useTranslation } from '../contexts/TranslationContext';
 
 const WhyChooseUs = () => {
+  const { t } = useTranslation();
   const features = [
     {
       title: 'Competitive Pricing',
@@ -94,7 +96,7 @@ const WhyChooseUs = () => {
       <div className={styles.container}>
         <div className={styles.wrapper}>
           <div className={styles.header}>
-            <h2 className={styles.title}>Why Data FX</h2>
+            <h2 className={styles.title}>{t('whyDataFx')}</h2>
           </div>
 
           <div className={styles.featuresGrid}>

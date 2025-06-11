@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Header.module.scss';
+import LanguageSelector from './LanguageSelector';
+import { useTranslation } from '../contexts/TranslationContext';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMarketsDropdownOpen, setIsMarketsDropdownOpen] = useState(false);
+  const { t } = useTranslation();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -57,42 +60,45 @@ const Header = () => {
           {/* Desktop Navigation */}
           <nav className={styles.desktopNav}>
             <Link to='/trade' className={styles.navLink}>
-              Start Trading
+              {t('header.startTrading')}
             </Link>
 
             <div className={styles.dropdown}>
-              <button className={styles.dropdownTrigger}>Markets</button>
+              <button className={styles.dropdownTrigger}>
+                {t('header.markets')}
+              </button>
               <div className={styles.dropdownContent}>
                 <Link to='/markets/forex' className={styles.dropdownItem}>
-                  Forex
+                  {t('header.markets.forex')}
                 </Link>
                 <Link to='/markets/indices' className={styles.dropdownItem}>
-                  Indices
+                  {t('header.markets.indices')}
                 </Link>
                 <Link to='/markets/commodities' className={styles.dropdownItem}>
-                  Commodities
+                  {t('header.markets.commodities')}
                 </Link>
                 <Link to='/markets/energies' className={styles.dropdownItem}>
-                  Energies
+                  {t('header.markets.energies')}
                 </Link>
                 <Link to='/markets/stocks' className={styles.dropdownItem}>
-                  Stocks
+                  {t('header.markets.stocks')}
                 </Link>
                 <Link to='/markets/crypto' className={styles.dropdownItem}>
-                  Cryptocurrencies
+                  {t('header.markets.crypto')}
                 </Link>
               </div>
             </div>
 
             <Link to='/company' className={styles.navLink}>
-              Company
+              {t('header.company')}
             </Link>
             <Link to='/platform' className={styles.navLink}>
-              Platform
+              {t('header.platform')}
             </Link>
             <Link to='/partners' className={styles.navLink}>
-              Partners
+              {t('header.partners')}
             </Link>
+            <LanguageSelector />
           </nav>
         </div>
 
@@ -104,7 +110,7 @@ const Header = () => {
         >
           <div className={styles.mobileNavLinks}>
             <Link to='/trade' className={styles.mobileNavLink}>
-              Start Trading
+              {t('header.startTrading')}
             </Link>
 
             <div className={styles.mobileDropdown}>
@@ -112,7 +118,7 @@ const Header = () => {
                 className={styles.mobileDropdownTrigger}
                 onClick={toggleMarketsDropdown}
               >
-                Markets
+                {t('header.markets')}
                 <svg
                   className={`${styles.chevron} ${
                     isMarketsDropdownOpen ? styles.rotate : ''
@@ -136,50 +142,53 @@ const Header = () => {
                 }`}
               >
                 <Link to='/markets/forex' className={styles.mobileDropdownItem}>
-                  Forex
+                  {t('header.markets.forex')}
                 </Link>
                 <Link
                   to='/markets/indices'
                   className={styles.mobileDropdownItem}
                 >
-                  Indices
+                  {t('header.markets.indices')}
                 </Link>
                 <Link
                   to='/markets/commodities'
                   className={styles.mobileDropdownItem}
                 >
-                  Commodities
+                  {t('header.markets.commodities')}
                 </Link>
                 <Link
                   to='/markets/energies'
                   className={styles.mobileDropdownItem}
                 >
-                  Energies
+                  {t('header.markets.energies')}
                 </Link>
                 <Link
                   to='/markets/stocks'
                   className={styles.mobileDropdownItem}
                 >
-                  Stocks
+                  {t('header.markets.stocks')}
                 </Link>
                 <Link
                   to='/markets/crypto'
                   className={styles.mobileDropdownItem}
                 >
-                  Cryptocurrencies
+                  {t('header.markets.crypto')}
                 </Link>
               </div>
             </div>
 
             <Link to='/company' className={styles.mobileNavLink}>
-              Company
+              {t('header.company')}
             </Link>
             <Link to='/platform' className={styles.mobileNavLink}>
-              Platform
+              {t('header.platform')}
             </Link>
             <Link to='/partners' className={styles.mobileNavLink}>
-              Partners
+              {t('header.partners')}
             </Link>
+            <div className={styles.mobileLanguageSelector}>
+              <LanguageSelector />
+            </div>
           </div>
         </div>
       </div>

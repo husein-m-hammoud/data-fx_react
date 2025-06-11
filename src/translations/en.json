@@ -1,0 +1,21 @@
+{
+  "header.logo": "Data FX",
+  "header.startTrading": "Start Trading",
+  "header.markets": "Markets",
+  "header.company": "Company",
+  "header.platform": "Platform",
+  "header.partners": "Partners",
+  "header.signIn": "Sign In",
+  "header.markets.forex": "Forex",
+  "header.markets.indices": "Indices",
+  "header.markets.commodities": "Commodities",
+  "header.markets.energies": "Energies",
+  "header.markets.stocks": "Stocks",
+  "header.markets.crypto": "Cryptocurrencies",
+
+  "startTradingBanner": "Start Trading with Data FX – Unlock Your Financial Future Today!​",
+  "joinThousands": "Join thousands of successful traders and take advantage of tight spreads, low commissions, and cutting-edge trading tools. Whether you're just starting or are a seasoned trader, Data FX provides everything you need to succeed in the markets.",
+  "startTradingNow": "Start Trading Now",
+  "tryDemo": "TryFreeDemo",
+  "whyDataFx": "Why Data FX?"
+}

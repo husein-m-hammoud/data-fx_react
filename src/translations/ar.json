@@ -1,0 +1,21 @@
+{
+  "header.logo": "داتا إف إكس",
+  "header.startTrading": "ابدأ التداول",
+  "header.markets": "الأسواق",
+  "header.company": "الشركة",
+  "header.platform": "المنصة",
+  "header.partners": "الشركاء",
+  "header.signIn": "تسجيل الدخول",
+  "header.markets.forex": "الفوركس",
+  "header.markets.indices": "المؤشرات",
+  "header.markets.commodities": "السلع",
+  "header.markets.energies": "الطاقة",
+  "header.markets.stocks": "الأسهم",
+  "header.markets.crypto": "العملات المشفرة",
+
+  "startTradingBanner": "ابدأ التداول مع Data FX – افتح مستقبلك المالي اليوم!",
+  "joinThousands": "انضم إلى آلاف المتداولين الناجحين واستفد من فروق الأسعار الضيقة والعمولات المنخفضة وأدوات التداول المتطورة. سواء كنت مبتدئًا أو متداولًا متمرسًا، توفر لك Data FX كل ما تحتاجه لتحقيق النجاح في الأسواق.",
+  "startTradingNow": "ابدأ التداول الآن",
+  "tryDemo": "جرب النسخة التجريبية المجانية",
+  "whyDataFx": "لماذا Data FX؟"
+}
