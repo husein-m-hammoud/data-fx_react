@@ -27,7 +27,7 @@ const Partners = () => {
               receive dedicated support and access to powerful tools to help you
               grow your business. Start earning with Data FX today!
             </p>
-            <a href='#' className={styles.bannerButton}>
+            <a href='/become-broker' className={styles.bannerButton}>
               Become an IB Now
             </a>
           </div>
@@ -114,7 +114,7 @@ const Partners = () => {
                 </p>
               </div>
             </div>
-            <a href='#' className={styles.stepsButton}>
+            <a href='/become-broker' className={styles.stepsButton}>
               Become an IB Now
             </a>
           </div>

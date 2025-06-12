@@ -6,9 +6,8 @@ const WhyChooseUs = () => {
   const { t } = useTranslation();
   const features = [
     {
-      title: 'Competitive Pricing',
-      description:
-        'At Data FX, we offer the lowest spreads and commissions to maximize your profits.',
+      title: t('compPrice'),
+      description: t('compPriceDesc'),
       icon: (
         <svg
           xmlns='http://www.w3.org/2000/svg'
@@ -27,9 +26,8 @@ const WhyChooseUs = () => {
       ),
     },
     {
-      title: 'Diverse Asset Selection',
-      description:
-        'Trade across 10,000+ instruments, including forex, stocks, commodities, and cryptocurrencies.',
+      title: t('diverseAsset'),
+      description: t('diverseAssetDesc'),
       icon: (
         <svg
           xmlns='http://www.w3.org/2000/svg'
@@ -48,9 +46,8 @@ const WhyChooseUs = () => {
       ),
     },
     {
-      title: 'Powerful Trading Tools',
-      description:
-        'Access MetaTrader 5 with advanced tools to execute trades efficiently and effectively.',
+      title: t('powerfulTrading'),
+      description: t('powerfulTradingDesc'),
       icon: (
         <svg
           xmlns='http://www.w3.org/2000/svg'
@@ -69,9 +66,8 @@ const WhyChooseUs = () => {
       ),
     },
     {
-      title: '24/7 Expert Support',
-      description:
-        'Our expert team provides round-the-clock assistance to ensure you never trade alone.',
+      title: t('expertSupport'),
+      description: t('expertSupportDesc'),
       icon: (
         <svg
           xmlns='http://www.w3.org/2000/svg'
@@ -117,23 +113,17 @@ const WhyChooseUs = () => {
         <div className={styles.wrapper}>
           <div className={styles.educationContent}>
             <div className={styles.educationText}>
-              <h2 className={styles.title}>Expand Your Trading Knowledge</h2>
+              <h2 className={styles.title}>{t('expandTrading')}</h2>
+              <p className={styles.educationParagraph}>{t('atDataFx')}</p>
               <p className={styles.educationParagraph}>
-                At Data FX, we provide you with all the educational resources
-                you need to enhance your trading skills. Whether you're a
-                beginner or an experienced trader, we offer valuable insights
-                and strategies through various channels. Stay updated with the
-                latest market news and trading tips:
-              </p>
-              <p className={styles.educationParagraph}>
-                Join our{' '}
+                {t('joinOur')}{' '}
                 <a
                   href='https://t.me/DataFXInc'
                   target='_blank'
                   rel='noopener noreferrer'
                   className={styles.socialLink}
                 >
-                  Telegram
+                  {t('telegram')}
                 </a>{' '}
                 channel for Arabic market news and updates on key financial
                 events.

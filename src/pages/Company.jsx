@@ -11,6 +11,7 @@ const Company = () => {
       <MarketBanner
         title='About Data FX'
         description='DATA FX Inc. provides institutional high net worth and retail customers with multi-asset and multi-market derivatives dealing capability through Foreign Exchange and CFDs products. The firm delivers unrivaled levels of customer support from knowledgeable staff with the utmost client confidentiality.'
+        sub='Innovative products to web and telephone clients and highly competitive pricing.'
       />
 
       <div className={styles.companyContent}>
@@ -59,147 +60,67 @@ const Company = () => {
           </section>
 
           <section className={styles.section}>
-            <h2 className={styles.sectionTitle}>Our Mission</h2>
+            <h2 className={styles.sectionTitle}>Why Data FX</h2>
             <div className={styles.valuePillars}>
               <div className={styles.pillar}>
-                <div className={styles.pillarIcon}>
-                  <svg
-                    viewBox='0 0 24 24'
-                    fill='none'
-                    xmlns='http://www.w3.org/2000/svg'
-                    className={styles.icon}
-                  >
-                    <path
-                      d='M3 21V3H21V21H3Z'
-                      stroke='currentColor'
-                      strokeWidth='2'
-                      strokeLinecap='round'
-                      strokeLinejoin='round'
-                    />
-                    <path
-                      d='M9 8L11 13L13 10L16 15'
-                      stroke='currentColor'
-                      strokeWidth='2'
-                      strokeLinecap='round'
-                      strokeLinejoin='round'
-                    />
-                  </svg>
-                </div>
-                <h3 className={styles.pillarTitle}>Innovation</h3>
+                <h3 className={styles.pillarTitle}>Client-Centered Approach</h3>
                 <p className={styles.pillarText}>
-                  Continuously improving our platform with cutting-edge
-                  technology and forward-thinking solutions.
+                  At Data FX, we put our clients first, striving to understand
+                  their unique needs and offering tailored solutions to help
+                  them achieve their financial goals. Our dedicated team works
+                  tirelessly to ensure each client enjoys a seamless and
+                  satisfying trading experience.
                 </p>
               </div>
 
               <div className={styles.pillar}>
-                <div className={styles.pillarIcon}>
-                  <svg
-                    viewBox='0 0 24 24'
-                    fill='none'
-                    xmlns='http://www.w3.org/2000/svg'
-                    className={styles.icon}
-                  >
-                    <path
-                      d='M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z'
-                      stroke='currentColor'
-                      strokeWidth='2'
-                      strokeLinecap='round'
-                      strokeLinejoin='round'
-                    />
-                    <path
-                      d='M12 16V12'
-                      stroke='currentColor'
-                      strokeWidth='2'
-                      strokeLinecap='round'
-                      strokeLinejoin='round'
-                    />
-                    <path
-                      d='M12 8H12.01'
-                      stroke='currentColor'
-                      strokeWidth='2'
-                      strokeLinecap='round'
-                      strokeLinejoin='round'
-                    />
-                  </svg>
-                </div>
-                <h3 className={styles.pillarTitle}>Education</h3>
+                <h3 className={styles.pillarTitle}>
+                  Expert Team of Professionals
+                </h3>
                 <p className={styles.pillarText}>
-                  Empowering traders with knowledge through comprehensive
-                  educational resources and market insights.
+                  Our team consists of experienced professionals who bring a
+                  wealth of knowledge and expertise to the table. With a strong
+                  focus on transparency, integrity, and client success, we
+                  continuously work to provide our traders with valuable
+                  insights, market analysis, and reliable support.
                 </p>
               </div>
 
               <div className={styles.pillar}>
-                <div className={styles.pillarIcon}>
-                  <svg
-                    viewBox='0 0 24 24'
-                    fill='none'
-                    xmlns='http://www.w3.org/2000/svg'
-                    className={styles.icon}
-                  >
-                    <path
-                      d='M12 14.5C15.3137 14.5 18 11.8137 18 8.5C18 5.18629 15.3137 2.5 12 2.5C8.68629 2.5 6 5.18629 6 8.5C6 11.8137 8.68629 14.5 12 14.5Z'
-                      stroke='currentColor'
-                      strokeWidth='2'
-                      strokeLinecap='round'
-                      strokeLinejoin='round'
-                    />
-                    <path
-                      d='M12 14.5V22.5'
-                      stroke='currentColor'
-                      strokeWidth='2'
-                      strokeLinecap='round'
-                      strokeLinejoin='round'
-                    />
-                    <path
-                      d='M8 18.5H16'
-                      stroke='currentColor'
-                      strokeWidth='2'
-                      strokeLinecap='round'
-                      strokeLinejoin='round'
-                    />
-                  </svg>
-                </div>
-                <h3 className={styles.pillarTitle}>Transparency</h3>
+                <h3 className={styles.pillarTitle}>
+                  Innovative Solutions for Your Benefit
+                </h3>
                 <p className={styles.pillarText}>
-                  Operating with full transparency in our pricing, practices,
-                  and performance metrics.
+                  Data FX is committed to developing and offering innovative
+                  trading solutions that empower our clients. We constantly
+                  improve our technology and tools, including the MetaTrader 5
+                  platform, to ensure that our clients have access to the best
+                  trading experience possible.
                 </p>
               </div>
 
               <div className={styles.pillar}>
-                <div className={styles.pillarIcon}>
-                  <svg
-                    viewBox='0 0 24 24'
-                    fill='none'
-                    xmlns='http://www.w3.org/2000/svg'
-                    className={styles.icon}
-                  >
-                    <path
-                      d='M20 7H4C2.89543 7 2 7.89543 2 9V19C2 20.1046 2.89543 21 4 21H20C21.1046 21 22 20.1046 22 19V9C22 7.89543 21.1046 7 20 7Z'
-                      stroke='currentColor'
-                      strokeWidth='2'
-                      strokeLinecap='round'
-                      strokeLinejoin='round'
-                    />
-                    <path
-                      d='M16 21V5C16 3.89543 15.1046 3 14 3H10C8.89543 3 8 3.89543 8 5V21'
-                      stroke='currentColor'
-                      strokeWidth='2'
-                      strokeLinecap='round'
-                      strokeLinejoin='round'
-                    />
-                  </svg>
-                </div>
-                <h3 className={styles.pillarTitle}>Security</h3>
+                <h3 className={styles.pillarTitle}>
+                  Building Long-Term Relationships
+                </h3>
                 <p className={styles.pillarText}>
-                  Safeguarding our clients' assets and data with the highest
-                  level of security measures and protocols.
+                  We believe in building lasting partnerships with our clients.
+                  By fostering trust and delivering consistent results, we aim
+                  to grow together with our traders, providing continuous
+                  support and working hard to help them achieve long-term
+                  success.
                 </p>
               </div>
             </div>
           </section>
+          <div>
+            <h3 className={styles.pillarTitle}>REGULATION</h3>
+            <p className={styles.pillarText}>
+              DATA FX Inc. is registered BC # 25250-2018 in Saint Vincent and
+              the Grenadines and approved by FSA to provide Forex Trading
+              Services.
+            </p>
+          </div>
         </div>
       </div>
 

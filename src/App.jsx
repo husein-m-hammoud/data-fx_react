@@ -11,6 +11,8 @@ import NotFound from './pages/NotFound';
 import Platform from './pages/Platform';
 import Partners from './pages/Partners';
 import { TranslationProvider } from './contexts/TranslationContext';
+import BecomeBroker from './pages/BecomeBroker';
+import Demo from './pages/Demo';
 
 const queryClient = new QueryClient();
 
@@ -28,7 +30,8 @@ const App = () => (
             <Route path='/trade' element={<Trade />} />
             <Route path='/platform' element={<Platform />} />
             <Route path='/partners' element={<Partners />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path='/become-broker' element={<BecomeBroker />} />
+            <Route path='/demo' element={<Demo />} />
             <Route path='*' element={<NotFound />} />
           </Routes>
         </BrowserRouter>

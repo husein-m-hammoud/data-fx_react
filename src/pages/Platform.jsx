@@ -5,6 +5,34 @@ import { TrendingUp, Settings, Radio, Shield } from 'lucide-react';
 import styles from './Platform.module.scss';
 
 const Platform = () => {
+  const faqs = [
+    {
+      question: 'What is MetaTrader 5 (MT5)?',
+      answer:
+        'MetaTrader 5 (MT5) is an advanced trading platform that offers multi-asset trading, including Forex, stocks, commodities, and cryptocurrencies. It provides robust tools for technical analysis, charting, and automated trading through Expert Advisors (EAs).',
+    },
+    {
+      question: 'What features does MT5 offer?',
+      answer:
+        'MT5 includes advanced charting tools, multiple order types, technical indicators, algorithmic trading, and a depth of market (DOM) feature. The platform also supports hedging and netting, giving traders flexibility in their trading strategies.',
+    },
+    {
+      question: 'Can I use Expert Advisors (EAs) on MT5?',
+      answer:
+        'Yes, MT5 fully supports Expert Advisors (EAs), allowing traders to automate their strategies and execute trades based on preset conditions. EAs can be customized or downloaded from the MetaTrader marketplace.',
+    },
+    {
+      question: 'How can I access MT5 on Data FX?',
+      answer:
+        'You can access MT5 through various devices, including desktop, web, and mobile versions. Simply download the platform from Data FX’s website, or use the web-based version for easy access from any browser.',
+    },
+    {
+      question: 'Does MT5 offer real-time data and analysis tools?',
+      answer:
+        'Yes, MT5 provides real-time market data, advanced charting features, and a wide range of technical analysis tools, including more than 80 built-in indicators and graphical objects to help traders make informed decisions.',
+    },
+  ];
+
   return (
     <div className={styles.page}>
       <Header />
@@ -48,16 +76,31 @@ const Platform = () => {
               Download MetaTrader 5 Today and Start Trading!
             </h2>
             <div className={styles.downloadButtons}>
-              <a href='#' className={styles.downloadLink}>
+              <a
+                href='https://play.google.com/store/apps/details?id=net.metaquotes.metatrader5&hl=en&referrer=ref_id%3d5003013687441219172%26server%3dDataFX-Server'
+                className={styles.downloadLink}
+                target='_blank'
+              >
                 MetaTrader for Android
               </a>
-              <a href='#' className={styles.downloadLink}>
+              <a
+                href='https://apps.apple.com/us/app/metatrader-5/id413251709'
+                className={styles.downloadLink}
+                target='_blank'
+              >
                 MetaTrader for iOS
               </a>
-              <a href='#' className={styles.downloadLink}>
+              <a
+                href='https://www.metatrader5.com/en/terminal/help/start_advanced/install_mac'
+                className={styles.downloadLink}
+                target='_blank'
+              >
                 Mac Download MetaTrader Instructions
               </a>
-              <a href='#' className={styles.downloadLink}>
+              <a
+                href='https://download.mql5.com/cdn/web/data.fx.inc/mt5/datafx5setup.exe'
+                className={styles.downloadLink}
+              >
                 Download MetaTrader for Windows
               </a>
             </div>
@@ -85,7 +128,7 @@ const Platform = () => {
             </div>
           </div>
         </section>
-        <FAQ />
+        <FAQ faqs={faqs} />
       </main>
       <Footer />
     </div>

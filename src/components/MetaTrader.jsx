@@ -62,7 +62,10 @@ const MetaTrader = () => {
                 </div>
               ))}
             </div>
-            <a href='#' className={styles.downloadButton}>
+            <a
+              href='https://data-fx.net/download'
+              className={styles.downloadButton}
+            >
               <Download className={styles.buttonIcon} />
               Download MetaTrader 5 & Learn More
             </a>

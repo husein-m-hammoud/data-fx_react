@@ -21,7 +21,11 @@ const Banner = () => {
                 {t('startTradingNow')}{' '}
                 <ArrowRight className={styles.buttonIcon} />
               </Link>
-              <button className={styles.secondaryButton}>{t('tryDemo')}</button>
+              <Link to='/demo'>
+                <button className={styles.secondaryButton}>
+                  {t('tryDemo')}
+                </button>
+              </Link>
             </div>
           </div>
 

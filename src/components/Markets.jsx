@@ -15,34 +15,40 @@ const Markets = () => {
       title: 'Forex',
       description: 'Access over 100 currency pairs in the global forex market.',
       icon: <TrendingUpDown />,
+      link: '/markets/forex',
     },
     {
       title: 'Indices',
       description:
         'Trade major global indices with competitive spreads and leverage.',
       icon: <LineChart />,
+      link: '/markets/indices',
     },
     {
       title: 'Commodities',
       description: 'Trade precious metals, agricultural products, and more.',
       icon: <BarChart />,
+      link: '/markets/commodities',
     },
     {
       title: 'Energies',
       description: 'Trade crude oil, natural gas, and other energy assets.',
       icon: <Flame />,
+      link: '/markets/energies',
     },
     {
       title: 'Stocks',
       description:
         'Trade global stocks across sectors with competitive commissions.',
       icon: <Building />,
+      link: '/markets/stocks',
     },
     {
       title: 'Cryptocurrencies',
       description:
         'Trade top cryptocurrencies like Bitcoin and Ethereum securely.',
       icon: <Bitcoin />,
+      link: '/markets/crypto',
     },
   ];
 
@@ -64,7 +70,7 @@ const Markets = () => {
                 <h3 className={styles.marketTitle}>{market.title}</h3>
               </div>
               <p className={styles.marketDescription}>{market.description}</p>
-              <a href='#' className={styles.readMore}>
+              <a href={market.link} className={styles.readMore}>
                 Read more
               </a>
             </div>
