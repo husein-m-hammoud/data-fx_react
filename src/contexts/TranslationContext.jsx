@@ -39,7 +39,11 @@ export const TranslationProvider = ({ children }) => {
         isRTL,
       }}
     >
-      <div dir={isRTL ? 'rtl' : 'ltr'} className={isRTL ? 'font-arabic' : ''}>
+      <div
+        className={`main-content ${isRTL ? 'rtl-content font-arabic' : ''}`}
+        dir={isRTL ? 'rtl' : 'ltr'}
+      >
+        {' '}
         {children}
       </div>
     </TranslationContext.Provider>

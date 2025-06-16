@@ -121,43 +121,47 @@ const BecomeBroker = () => {
                     )}
                   />
                 </div>
+                <div className={styles.formRow}>
+                  <FormField
+                    control={form.control}
+                    name='email'
+                    render={({ field }) => (
+                      <FormItem className={styles.formItem}>
+                        <FormLabel className={styles.formLabel}>
+                          Email
+                        </FormLabel>
+                        <FormControl>
+                          <Input
+                            className={styles.formInput}
+                            placeholder='Enter your Email'
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage className={styles.formMessage} />
+                      </FormItem>
+                    )}
+                  />
 
-                <FormField
-                  control={form.control}
-                  name='email'
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className={styles.formLabel}>Email</FormLabel>
-                      <FormControl>
-                        <Input
-                          className={styles.formInput}
-                          type='email'
-                          placeholder='Enter your email address'
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage className={styles.formMessage} />
-                    </FormItem>
-                  )}
-                />
-
-                <FormField
-                  control={form.control}
-                  name='phone'
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className={styles.formLabel}>Phone</FormLabel>
-                      <FormControl>
-                        <Input
-                          className={styles.formInput}
-                          placeholder='Enter your phone number'
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage className={styles.formMessage} />
-                    </FormItem>
-                  )}
-                />
+                  <FormField
+                    control={form.control}
+                    name='phone'
+                    render={({ field }) => (
+                      <FormItem className={styles.formItem}>
+                        <FormLabel className={styles.formLabel}>
+                          Phone
+                        </FormLabel>
+                        <FormControl>
+                          <Input
+                            className={styles.formInput}
+                            placeholder='Enter your phone number'
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage className={styles.formMessage} />
+                      </FormItem>
+                    )}
+                  />
+                </div>
 
                 <div className={styles.contactMethodsGroup}>
                   <FormLabel className={styles.contactMethodsLabel}>

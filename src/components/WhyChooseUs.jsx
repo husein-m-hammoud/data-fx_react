@@ -125,8 +125,7 @@ const WhyChooseUs = () => {
                 >
                   {t('telegram')}
                 </a>{' '}
-                channel for Arabic market news and updates on key financial
-                events.
+                {t('channelForArabic')}
               </p>
               <p className={styles.educationParagraph}>
                 For English market news, follow us on{' '}
