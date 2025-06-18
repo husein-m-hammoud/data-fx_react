@@ -1,9 +1,9 @@
-import React from 'react';
-import { useForm, Controller } from 'react-hook-form';
-import { z } from 'zod';
-import { zodResolver } from '@hookform/resolvers/zod';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+import React from "react";
+import { useForm, Controller } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 import {
   Form,
   FormField,
@@ -11,46 +11,63 @@ import {
   FormLabel,
   FormControl,
   FormMessage,
-} from '../components/ui/form';
-import { Input } from '../components/ui/input';
-import { Button } from '../components/ui/button';
-import { Checkbox } from '../components/ui/checkbox';
-import { toast } from 'sonner';
-import styles from './BecomeBroker.module.scss';
+} from "../components/ui/form";
+import { Input } from "../components/ui/input";
+import { Button } from "../components/ui/button";
+import { Checkbox } from "../components/ui/checkbox";
+import { toast } from "sonner";
+import styles from "./BecomeBroker.module.scss";
+import { sendEmail } from "../api/email";
 
 const formSchema = z.object({
   firstName: z
     .string()
-    .min(2, { message: 'First name must be at least 2 characters.' }),
+    .min(2, { message: "First name must be at least 2 characters." }),
   lastName: z
     .string()
-    .min(2, { message: 'Last name must be at least 2 characters.' }),
-  email: z.string().email({ message: 'Please enter a valid email address.' }),
-  phone: z.string().min(5, { message: 'Please enter a valid phone number.' }),
+    .min(2, { message: "Last name must be at least 2 characters." }),
+  email: z.string().email({ message: "Please enter a valid email address." }),
+  phone: z.string().min(5, { message: "Please enter a valid phone number." }),
   contactMethods: z
     .array(z.string())
-    .min(1, { message: 'Please select at least one contact method.' }),
+    .min(1, { message: "Please select at least one contact method." }),
 });
 
 const BecomeBroker = () => {
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      firstName: '',
-      lastName: '',
-      email: '',
-      phone: '',
+      firstName: "",
+      lastName: "",
+      email: "",
+      phone: "",
       contactMethods: [],
     },
   });
 
-  const onSubmit = (data) => {
-    console.log('IB Form submitted:', data);
-    toast.success('Application submitted successfully!', {
-      description:
-        'We will contact you shortly to discuss your IB application.',
-    });
-    form.reset();
+  const onSubmit = async (data) => {
+    const payload = {
+      email_form: "Become Broker Application", // Sender or static website email
+      from_email: data.email,
+      first_name: data.firstName,
+      last_name: data.lastName,
+      phone: data.phone,
+      contact_methods: data.contactMethods,
+    };
+
+    try {
+      await sendEmail(payload);
+      toast.success("Application submitted successfully!", {
+        description:
+          "We will contact you shortly to discuss your IB application.",
+      });
+      form.reset();
+    } catch (error) {
+      console.error("Send email error:", error);
+      toast.error("Failed to send application", {
+        description: error.message || "Something went wrong.",
+      });
+    }
   };
 
   return (
@@ -83,7 +100,7 @@ const BecomeBroker = () => {
                 <div className={styles.formRow}>
                   <FormField
                     control={form.control}
-                    name='firstName'
+                    name="firstName"
                     render={({ field }) => (
                       <FormItem className={styles.formItem}>
                         <FormLabel className={styles.formLabel}>
@@ -92,7 +109,7 @@ const BecomeBroker = () => {
                         <FormControl>
                           <Input
                             className={styles.formInput}
-                            placeholder='Enter your first name'
+                            placeholder="Enter your first name"
                             {...field}
                           />
                         </FormControl>
@@ -103,7 +120,7 @@ const BecomeBroker = () => {
 
                   <FormField
                     control={form.control}
-                    name='lastName'
+                    name="lastName"
                     render={({ field }) => (
                       <FormItem className={styles.formItem}>
                         <FormLabel className={styles.formLabel}>
@@ -112,7 +129,7 @@ const BecomeBroker = () => {
                         <FormControl>
                           <Input
                             className={styles.formInput}
-                            placeholder='Enter your last name'
+                            placeholder="Enter your last name"
                             {...field}
                           />
                         </FormControl>
@@ -124,7 +141,7 @@ const BecomeBroker = () => {
                 <div className={styles.formRow}>
                   <FormField
                     control={form.control}
-                    name='email'
+                    name="email"
                     render={({ field }) => (
                       <FormItem className={styles.formItem}>
                         <FormLabel className={styles.formLabel}>
@@ -133,7 +150,7 @@ const BecomeBroker = () => {
                         <FormControl>
                           <Input
                             className={styles.formInput}
-                            placeholder='Enter your Email'
+                            placeholder="Enter your Email"
                             {...field}
                           />
                         </FormControl>
@@ -144,7 +161,7 @@ const BecomeBroker = () => {
 
                   <FormField
                     control={form.control}
-                    name='phone'
+                    name="phone"
                     render={({ field }) => (
                       <FormItem className={styles.formItem}>
                         <FormLabel className={styles.formLabel}>
@@ -153,7 +170,7 @@ const BecomeBroker = () => {
                         <FormControl>
                           <Input
                             className={styles.formInput}
-                            placeholder='Enter your phone number'
+                            placeholder="Enter your phone number"
                             {...field}
                           />
                         </FormControl>
@@ -170,12 +187,12 @@ const BecomeBroker = () => {
                   <div className={styles.checkboxGroup}>
                     <FormField
                       control={form.control}
-                      name='contactMethods'
+                      name="contactMethods"
                       render={() => (
                         <FormItem className={styles.checkboxItem}>
                           <div className={styles.checkboxWrapper}>
                             <Controller
-                              name='contactMethods'
+                              name="contactMethods"
                               control={form.control}
                               render={({ field }) => {
                                 return (
@@ -185,17 +202,17 @@ const BecomeBroker = () => {
                                         <Checkbox
                                           className={styles.checkbox}
                                           checked={field.value?.includes(
-                                            'email'
+                                            "email"
                                           )}
                                           onCheckedChange={(checked) => {
                                             return checked
                                               ? field.onChange([
                                                   ...field.value,
-                                                  'email',
+                                                  "email",
                                                 ])
                                               : field.onChange(
                                                   field.value?.filter(
-                                                    (value) => value !== 'email'
+                                                    (value) => value !== "email"
                                                   )
                                                 );
                                           }}
@@ -213,17 +230,17 @@ const BecomeBroker = () => {
                                         <Checkbox
                                           className={styles.checkbox}
                                           checked={field.value?.includes(
-                                            'phone'
+                                            "phone"
                                           )}
                                           onCheckedChange={(checked) => {
                                             return checked
                                               ? field.onChange([
                                                   ...field.value,
-                                                  'phone',
+                                                  "phone",
                                                 ])
                                               : field.onChange(
                                                   field.value?.filter(
-                                                    (value) => value !== 'phone'
+                                                    (value) => value !== "phone"
                                                   )
                                                 );
                                           }}
@@ -241,18 +258,18 @@ const BecomeBroker = () => {
                                         <Checkbox
                                           className={styles.checkbox}
                                           checked={field.value?.includes(
-                                            'whatsapp'
+                                            "whatsapp"
                                           )}
                                           onCheckedChange={(checked) => {
                                             return checked
                                               ? field.onChange([
                                                   ...field.value,
-                                                  'whatsapp',
+                                                  "whatsapp",
                                                 ])
                                               : field.onChange(
                                                   field.value?.filter(
                                                     (value) =>
-                                                      value !== 'whatsapp'
+                                                      value !== "whatsapp"
                                                   )
                                                 );
                                           }}
@@ -277,7 +294,7 @@ const BecomeBroker = () => {
                 </div>
 
                 <div className={styles.submitContainer}>
-                  <Button type='submit' className={styles.submitButton}>
+                  <Button type="submit" className={styles.submitButton}>
                     Submit Application
                   </Button>
                 </div>
