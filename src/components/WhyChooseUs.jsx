@@ -128,21 +128,19 @@ const WhyChooseUs = () => {
                 {t('channelForArabic')}
               </p>
               <p className={styles.educationParagraph}>
-                For English market news, follow us on{' '}
+                {t('englishMarketNews')}{' '}
                 <a
                   href='https://x.com/DataFXInc'
                   target='_blank'
                   rel='noopener noreferrer'
                   className={styles.socialLink}
                 >
-                  X
+                  {t('X')}
                 </a>{' '}
-                where we share daily updates, tips, and trading strategies.
+                {t('whereWeShare')}{' '}
               </p>
               <p className={styles.educationParagraph}>
-                Our educational content, including tutorials, webinars, and
-                tips, is designed to give you the knowledge and confidence you
-                need to succeed in the financial markets.
+                {t('ourEducationalContent')}
               </p>
             </div>
             <div className={styles.videoContainer}>

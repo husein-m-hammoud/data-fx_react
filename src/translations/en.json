@@ -32,5 +32,24 @@
   "atDataFx": "At Data FX, we provide you with all the educational resources you need to enhance your trading skills. Whether you're a beginner or an experienced trader, we offer valuable insights and strategies through various channels. Stay updated with the latest market news and trading tips:",
   "joinOur": "Join our",
   "telegram": "Telegram",
-  "channelForArabic": "channel for Arabic market news and updates on key financial events."
+  "channelForArabic": "channel for Arabic market news and updates on key financial events.",
+  "englishMarketNews": "For English market news, follow us on",
+  "X": "X",
+  "whereWeShare": "where we share daily updates, tips, and trading strategies.",
+  "ourEducationalContent": "Our educational content, including tutorials, webinars, and tips, is designed to give you the knowledge and confidence you need to succeed in the financial markets.",
+
+  "tradeWithBest": "Trade with the Best: MetaTrader 5 (MT5)",
+  "dataFxOffers": "Data FX offers access to the world's leading trading platform, MetaTrader 5 (MT5). With advanced features, powerful tools, and seamless integration, MT5 is designed to give you the edge in the markets.",
+
+  "advancedCharting": "Advanced Charting",
+  "advancedChartingDesc": "Professional charting tools to help you analyze the markets with precision.",
+  "realTimeData": "Real-Time Data",
+  "realTimeDataDesc": "Stay up-to-date with live price feeds and global market news.",
+  "automatedTrading": "Automated Trading",
+  "automatedTradingDesc": "Use Expert Advisors (EAs) for automated trading strategies and 24/7 execution.",
+  "crossDeviceAccess": "Cross-Device Access",
+  "crossDeviceAccessDesc": "Trade from desktop, mobile, or web with complete flexibility.",
+  "multipleOrderTypes": "Multiple Order Types",
+  "multipleOrderTypesDesc": "Enjoy the full range of order types including market, limit, and stop orders to suit your trading style.",
+  "downloadMetaTrader": "Download MetaTrader 5 & Learn More"
 }

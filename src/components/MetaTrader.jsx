@@ -1,33 +1,31 @@
 import React from 'react';
 import { Download } from 'lucide-react';
 import styles from './MetaTrader.module.scss';
+import { useTranslation } from '../contexts/TranslationContext';
 
 const MetaTrader = () => {
+  const { t } = useTranslation();
+
   const features = [
     {
-      name: 'Advanced Charting',
-      description:
-        'Professional charting tools to help you analyze the markets with precision.',
+      name: t('advancedCharting'),
+      description: t('advancedChartingDesc'),
     },
     {
-      name: 'Real-Time Data',
-      description:
-        'Stay up-to-date with live price feeds and global market news.',
+      name: t('realTimeData'),
+      description: t('realTimeDataDesc'),
     },
     {
-      name: 'Automated Trading',
-      description:
-        'Use Expert Advisors (EAs) for automated trading strategies and 24/7 execution.',
+      name: t('automatedTrading'),
+      description: t('automatedTradingDesc'),
     },
     {
-      name: 'Cross-Device Access',
-      description:
-        'Trade from desktop, mobile, or web with complete flexibility.',
+      name: t('crossDeviceAccess'),
+      description: t('crossDeviceAccessDesc'),
     },
     {
-      name: 'Multiple Order Types',
-      description:
-        'Enjoy the full range of order types including market, limit, and stop orders to suit your trading style.',
+      name: t('multipleOrderTypes'),
+      description: t('multipleOrderTypesDesc'),
     },
   ];
 
@@ -43,15 +41,8 @@ const MetaTrader = () => {
             />
           </div>
           <div className={styles.textContent}>
-            <h2 className={styles.title}>
-              Trade with the Best: MetaTrader 5 (MT5)
-            </h2>
-            <p className={styles.description}>
-              Data FX offers access to the world's leading trading platform,
-              MetaTrader 5 (MT5). With advanced features, powerful tools, and
-              seamless integration, MT5 is designed to give you the edge in the
-              markets.
-            </p>
+            <h2 className={styles.title}>{t('tradeWithBest')}</h2>
+            <p className={styles.description}>{t('dataFxOffers')}</p>
             <div className={styles.featuresList}>
               {features.map((feature, index) => (
                 <div key={index} className={styles.featureItem}>
@@ -67,7 +58,7 @@ const MetaTrader = () => {
               className={styles.downloadButton}
             >
               <Download className={styles.buttonIcon} />
-              Download MetaTrader 5 & Learn More
+              {t('downloadMetaTrader')}
             </a>
           </div>
         </div>
