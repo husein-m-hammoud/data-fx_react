@@ -1,10 +1,10 @@
-import React from "react";
-import { useForm, Controller } from "react-hook-form";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
-import MarketBanner from "../components/MarketBanner";
+import React from 'react';
+import { useForm, Controller } from 'react-hook-form';
+import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+import MarketBanner from '../components/MarketBanner';
 import {
   Form,
   FormField,
@@ -12,69 +12,70 @@ import {
   FormLabel,
   FormControl,
   FormMessage,
-} from "../components/ui/form";
-import { sendEmail } from "../api/email";
+} from '../components/ui/form';
+import { sendEmail } from '../api/email';
 
-import { Input } from "../components/ui/input";
-import { Button } from "../components/ui/button";
+import { Input } from '../components/ui/input';
+import { Button } from '../components/ui/button';
 import {
   Select,
   SelectTrigger,
   SelectValue,
   SelectContent,
   SelectItem,
-} from "../components/ui/select";
-import { Checkbox } from "../components/ui/checkbox";
-import { toast } from "sonner";
-import styles from "./Trade.module.scss";
+} from '../components/ui/select';
+import { Checkbox } from '../components/ui/checkbox';
+import { toast } from 'sonner';
+import styles from './Trade.module.scss';
+import { useTranslation } from '../contexts/TranslationContext';
 
 const formSchema = z.object({
   firstName: z
     .string()
-    .min(2, { message: "First name must be at least 2 characters." }),
+    .min(2, { message: 'First name must be at least 2 characters.' }),
   lastName: z
     .string()
-    .min(2, { message: "Last name must be at least 2 characters." }),
-  email: z.string().email({ message: "Please enter a valid email address." }),
-  countryCode: z.string().min(1, { message: "Please select a country code." }),
+    .min(2, { message: 'Last name must be at least 2 characters.' }),
+  email: z.string().email({ message: 'Please enter a valid email address.' }),
+  countryCode: z.string().min(1, { message: 'Please select a country code.' }),
   phoneNumber: z
     .string()
-    .min(5, { message: "Please enter a valid phone number." }),
+    .min(5, { message: 'Please enter a valid phone number.' }),
   contactMethods: z
     .array(z.string())
-    .min(1, { message: "Please select at least one contact method." }),
+    .min(1, { message: 'Please select at least one contact method.' }),
 });
 
 const countryCodes = [
-  { value: "+1", label: "United States (+1)" },
-  { value: "+44", label: "United Kingdom (+44)" },
-  { value: "+33", label: "France (+33)" },
-  { value: "+49", label: "Germany (+49)" },
-  { value: "+81", label: "Japan (+81)" },
-  { value: "+86", label: "China (+86)" },
-  { value: "+91", label: "India (+91)" },
-  { value: "+61", label: "Australia (+61)" },
-  { value: "+7", label: "Russia (+7)" },
-  { value: "+55", label: "Brazil (+55)" },
+  { value: '+1', label: 'United States (+1)' },
+  { value: '+44', label: 'United Kingdom (+44)' },
+  { value: '+33', label: 'France (+33)' },
+  { value: '+49', label: 'Germany (+49)' },
+  { value: '+81', label: 'Japan (+81)' },
+  { value: '+86', label: 'China (+86)' },
+  { value: '+91', label: 'India (+91)' },
+  { value: '+61', label: 'Australia (+61)' },
+  { value: '+7', label: 'Russia (+7)' },
+  { value: '+55', label: 'Brazil (+55)' },
 ];
 
 const Trade = () => {
+  const { t } = useTranslation();
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      firstName: "",
-      lastName: "",
-      email: "",
-      countryCode: "",
-      phoneNumber: "",
+      firstName: '',
+      lastName: '',
+      email: '',
+      countryCode: '',
+      phoneNumber: '',
       contactMethods: [],
     },
   });
 
-
   const onSubmit = async (data) => {
     const payload = {
-      email_form: "Trading Account", // static sender
+      email_form: 'Trading Account', // static sender
       from_email: data.email,
       first_name: data.firstName,
       last_name: data.lastName,
@@ -84,14 +85,14 @@ const Trade = () => {
 
     try {
       await sendEmail(payload);
-      toast.success("Your request was sent successfully!", {
-        description: "We will contact you shortly.",
+      toast.success('Your request was sent successfully!', {
+        description: 'We will contact you shortly.',
       });
       form.reset();
     } catch (error) {
-      console.error("Send email error:", error);
-      toast.error("Failed to send request", {
-        description: error.message || "Something went wrong.",
+      console.error('Send email error:', error);
+      toast.error('Failed to send request', {
+        description: error.message || 'Something went wrong.',
       });
     }
   };
@@ -100,8 +101,8 @@ const Trade = () => {
     <>
       <Header />
       <MarketBanner
-        title="Open Your Real Trading Account"
-        description="Fill out the form below to create your account and start trading in minutes."
+        title={t('openYourAccount')}
+        description={t('openYourAccountDesc')}
       />
 
       <div className={styles.tradeContent}>
@@ -115,18 +116,14 @@ const Trade = () => {
                 <div className={styles.formRow}>
                   <FormField
                     control={form.control}
-                    name="firstName"
+                    name='firstName'
                     render={({ field }) => (
                       <FormItem className={styles.formItem}>
                         <FormLabel className={styles.formLabel}>
-                          First Name
+                          {t('firstName')}
                         </FormLabel>
                         <FormControl>
-                          <Input
-                            className={styles.formInput}
-                            placeholder="Enter your first name"
-                            {...field}
-                          />
+                          <Input className={styles.formInput} {...field} />
                         </FormControl>
                         <FormMessage className={styles.formMessage} />
                       </FormItem>
@@ -135,18 +132,14 @@ const Trade = () => {
 
                   <FormField
                     control={form.control}
-                    name="lastName"
+                    name='lastName'
                     render={({ field }) => (
                       <FormItem className={styles.formItem}>
                         <FormLabel className={styles.formLabel}>
-                          Last Name
+                          {t('lastName')}
                         </FormLabel>
                         <FormControl>
-                          <Input
-                            className={styles.formInput}
-                            placeholder="Enter your last name"
-                            {...field}
-                          />
+                          <Input className={styles.formInput} {...field} />
                         </FormControl>
                         <FormMessage className={styles.formMessage} />
                       </FormItem>
@@ -156,15 +149,16 @@ const Trade = () => {
 
                 <FormField
                   control={form.control}
-                  name="email"
+                  name='email'
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className={styles.formLabel}>Email</FormLabel>
+                      <FormLabel className={styles.formLabel}>
+                        {t('email')}
+                      </FormLabel>
                       <FormControl>
                         <Input
                           className={styles.formInput}
-                          type="email"
-                          placeholder="Enter your email address"
+                          type='email'
                           {...field}
                         />
                       </FormControl>
@@ -176,52 +170,14 @@ const Trade = () => {
                 <div className={styles.phoneGroup}>
                   <FormField
                     control={form.control}
-                    name="countryCode"
-                    render={({ field }) => (
-                      <FormItem className={styles.countryCode}>
-                        <FormLabel className={styles.formLabel}>
-                          Country Code
-                        </FormLabel>
-                        <Select
-                          onValueChange={field.onChange}
-                          defaultValue={field.value}
-                        >
-                          <FormControl>
-                            <SelectTrigger className={styles.selectTrigger}>
-                              <SelectValue placeholder="Select" />
-                            </SelectTrigger>
-                          </FormControl>
-                          <SelectContent className={styles.selectContent}>
-                            {countryCodes.map((country) => (
-                              <SelectItem
-                                className={styles.selectItem}
-                                key={country.value}
-                                value={country.value}
-                              >
-                                {country.label}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
-                        <FormMessage className={styles.formMessage} />
-                      </FormItem>
-                    )}
-                  />
-
-                  <FormField
-                    control={form.control}
-                    name="phoneNumber"
+                    name='phoneNumber'
                     render={({ field }) => (
                       <FormItem className={styles.phoneNumber}>
                         <FormLabel className={styles.formLabel}>
-                          Phone Number
+                          {t('phone')}
                         </FormLabel>
                         <FormControl>
-                          <Input
-                            className={styles.formInput}
-                            placeholder="Enter your phone number"
-                            {...field}
-                          />
+                          <Input className={styles.formInput} {...field} />
                         </FormControl>
                         <FormMessage className={styles.formMessage} />
                       </FormItem>
@@ -231,17 +187,17 @@ const Trade = () => {
 
                 <div className={styles.contactMethodsGroup}>
                   <FormLabel className={styles.contactMethodsLabel}>
-                    Preferred Contact Method
+                    {t('preferredContact')}
                   </FormLabel>
                   <div className={styles.checkboxGroup}>
                     <FormField
                       control={form.control}
-                      name="contactMethods"
+                      name='contactMethods'
                       render={() => (
                         <FormItem className={styles.checkboxItem}>
                           <div className={styles.checkboxWrapper}>
                             <Controller
-                              name="contactMethods"
+                              name='contactMethods'
                               control={form.control}
                               render={({ field }) => {
                                 return (
@@ -251,17 +207,17 @@ const Trade = () => {
                                         <Checkbox
                                           className={styles.checkbox}
                                           checked={field.value?.includes(
-                                            "email"
+                                            'email'
                                           )}
                                           onCheckedChange={(checked) => {
                                             return checked
                                               ? field.onChange([
                                                   ...field.value,
-                                                  "email",
+                                                  'email',
                                                 ])
                                               : field.onChange(
                                                   field.value?.filter(
-                                                    (value) => value !== "email"
+                                                    (value) => value !== 'email'
                                                   )
                                                 );
                                           }}
@@ -270,7 +226,7 @@ const Trade = () => {
                                       <FormLabel
                                         className={styles.checkboxLabel}
                                       >
-                                        Email
+                                        {t('email')}
                                       </FormLabel>
                                     </div>
 
@@ -279,18 +235,18 @@ const Trade = () => {
                                         <Checkbox
                                           className={styles.checkbox}
                                           checked={field.value?.includes(
-                                            "whatsapp"
+                                            'whatsapp'
                                           )}
                                           onCheckedChange={(checked) => {
                                             return checked
                                               ? field.onChange([
                                                   ...field.value,
-                                                  "whatsapp",
+                                                  'whatsapp',
                                                 ])
                                               : field.onChange(
                                                   field.value?.filter(
                                                     (value) =>
-                                                      value !== "whatsapp"
+                                                      value !== 'whatsapp'
                                                   )
                                                 );
                                           }}
@@ -299,7 +255,7 @@ const Trade = () => {
                                       <FormLabel
                                         className={styles.checkboxLabel}
                                       >
-                                        WhatsApp
+                                        {t('whatsapp')}
                                       </FormLabel>
                                     </div>
 
@@ -308,18 +264,18 @@ const Trade = () => {
                                         <Checkbox
                                           className={styles.checkbox}
                                           checked={field.value?.includes(
-                                            "telegram"
+                                            'telegram'
                                           )}
                                           onCheckedChange={(checked) => {
                                             return checked
                                               ? field.onChange([
                                                   ...field.value,
-                                                  "telegram",
+                                                  'telegram',
                                                 ])
                                               : field.onChange(
                                                   field.value?.filter(
                                                     (value) =>
-                                                      value !== "telegram"
+                                                      value !== 'telegram'
                                                   )
                                                 );
                                           }}
@@ -328,7 +284,7 @@ const Trade = () => {
                                       <FormLabel
                                         className={styles.checkboxLabel}
                                       >
-                                        Telegram
+                                        {t('telegram')}
                                       </FormLabel>
                                     </div>
                                   </>
@@ -344,8 +300,8 @@ const Trade = () => {
                 </div>
 
                 <div className={styles.submitContainer}>
-                  <Button type="submit" className={styles.submitButton}>
-                    Create Account
+                  <Button type='submit' className={styles.submitButton}>
+                    {t('createAccount')}
                   </Button>
                 </div>
               </form>

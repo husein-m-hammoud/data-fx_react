@@ -79,8 +79,8 @@
     direction: ltr; /* Keep default LTR for the container */
   }
 
-  .main-content.rtl-content > *:not(header):not(footer) {
-    direction: rtl;
+  .main-content.rtl-content > *:not(header) {
+    direction: rtl !important;
   }
 
   /* Specific RTL styles for content sections */
@@ -100,8 +100,7 @@
   }
 
   /* Header and Footer always LTR */
-  .rtl-content header,
-  .rtl-content footer {
+  .rtl-content header {
     direction: ltr !important;
   }
 

@@ -8,26 +8,28 @@ import EconomicCalendar from '../components/EconomicCalendar';
 import FAQ from '../components/FAQ';
 import Footer from '../components/Footer';
 import styles from './MarketPage.module.scss';
+import { useTranslation } from '../contexts/TranslationContext';
 
 const MarketPage = () => {
   const { marketType } = useParams();
+  const { t } = useTranslation();
 
   const formatMarketType = (type) => {
     if (!type) return '';
 
     switch (type.toLowerCase()) {
       case 'forex':
-        return 'Forex';
+        return t('forexPageTitle');
       case 'indices':
-        return 'Indices';
+        return t('indicesPageTitle');
       case 'commodities':
-        return 'Commodities';
+        return t('commoditiesPageTitle');
       case 'energies':
-        return 'Energies';
+        return t('energiesPageTitle');
       case 'stocks':
-        return 'Stocks';
+        return t('stocksPageTitle');
       case 'crypto':
-        return 'Cryptocurrencies';
+        return t('crypocurrrenciesPageTitle');
       default:
         return type.charAt(0).toUpperCase() + type.slice(1);
     }
@@ -36,19 +38,19 @@ const MarketPage = () => {
   const getMarketDescription = (type) => {
     switch (type.toLowerCase()) {
       case 'forex':
-        return 'Forex trading involves buying and selling currencies in pairs. With Data FX, you can access the most liquid market in the world, trading with tight spreads from 0 and leveraging advanced tools to enhance your trading experience.';
+        return t('forexPageDesc');
       case 'indices':
-        return 'Track major global indices such as the S&P 500, NASDAQ, and more. With tight spreads, advanced tools, and 24/7 support, Data FX makes trading indices simple and accessible.';
+        return t('indicesPageDesc');
       case 'commodities':
-        return 'Diversify your portfolio by trading essential commodities like gold, silver, and oil. With competitive spreads and low transaction costs, Data FX offers a seamless trading experience for all traders.';
+        return t('commoditiesPageDesc');
       case 'energies':
-        return 'Trade volatile energy markets, including crude oil, natural gas, and renewable energy assets. With Data FX, you’ll have access to low-cost trading, real-time data, and professional support.';
+        return t('energiesPageDesc');
       case 'stocks':
-        return 'Access stocks from top global companies with tight spreads and competitive pricing. Trade stocks in real-time with Data FX’s advanced trading platform, offering 24/7 support, low transaction costs, and state-of-the-art tools.';
+        return t('stocksPageDesc');
       case 'crypto':
-        return 'Cryptocurrency markets offer high volatility and incredible opportunities. Trade assets like Bitcoin, Ethereum, and Litecoin with tight spreads and advanced trading tools.';
+        return t('cryptocurrenciesPageDesc');
       default:
-        return 'Explore our range of tradable markets with competitive conditions and advanced trading tools.';
+        return '';
     }
   };
 
@@ -57,216 +59,263 @@ const MarketPage = () => {
       case 'forex':
         return [
           {
-            question: 'What is Forex Trading?',
-            answer:
-              'Forex trading involves buying and selling currency pairs. The goal is to profit from changes in the value of one currency against another. The Forex market operates 24 hours a day, five days a week, making it one of the most liquid markets in the world.',
+            question: t('forexFaq1'),
+            answer: t('forexFaq1Answer'),
           },
           {
-            question: 'How do I make money trading Forex?',
-            answer:
-              'You make money by buying a currency pair at a low price and selling it at a higher price (or vice versa for short trades). Forex traders capitalize on price movements between currency pairs.',
+            question: t('forexFaq2'),
+            answer: t('forexFaq2Answer'),
           },
           {
-            question: 'What are the most traded currency pairs?',
-            answer:
-              'The most traded currency pairs include: \n EUR/USD (Euro/US Dollar) \n GBP/USD (British Pound/US Dollar) \n USD/JPY (US Dollar/Japanese Yen) \n AUD/USD (Australian Dollar/US Dollar)',
+            question: t('forexFaq3'),
+            answer: t('forexFaq3Answer'),
           },
           {
-            question: 'What factors affect Forex prices?',
-            answer:
-              'Forex prices are influenced by various factors, including economic indicators, geopolitical events, central bank policies, interest rates, and inflation rates. Market sentiment and speculation also play a significant role.',
+            question: t('forexFaq4'),
+            answer: t('forexFaq4Answer'),
           },
           {
-            question: 'What is leverage in Forex trading?',
-            answer:
-              'Leverage allows traders to control a large position with a small deposit. For example, with a leverage of 100:1, you can control $100,000 with just $1,000 in margin. However, leverage also increases risk, and it’s important to use it cautiously.',
+            question: t('forexFaq5'),
+            answer: t('forexFaq5Answer'),
           },
         ];
       case 'indices':
         return [
           {
-            question: 'What is an Index?',
-            answer:
-              'An index tracks a basket of stocks that represents a portion of the economy. Examples include the S&P 500 and the NASDAQ 100.',
+            question: t('indicesFaq1'),
+            answer: t('indicesFaq1Answer'),
           },
           {
-            question:
-              'Why should I trade indices instead of individual stocks?',
-            answer:
-              'Trading indices offers instant diversification and mitigates the risk of trading a single stock.',
+            question: t('indicesFaq2'),
+            answer: t('indicesFaq2Answer'),
           },
           {
-            question: 'What factors influence index prices?',
-            answer:
-              'Index prices are driven by the performance of the stocks in the index, economic reports, geopolitical events, and market sentiment.',
+            question: t('indicesFaq3'),
+            answer: t('indicesFaq3Answer'),
           },
           {
-            question: 'How do I trade indices?',
-            answer:
-              'You can trade indices using CFDs, futures contracts, or ETFs through platforms like Data FX.',
+            question: t('indicesFaq4'),
+            answer: t('indicesFaq4Answer'),
           },
           {
-            question: 'Can I trade indices after hours?',
-            answer:
-              'Yes, you can trade indices outside of regular market hours with some brokers offering after-hours or pre-market trading.',
+            question: t('indicesFaq5'),
+            answer: t('indicesFaq5Answer'),
           },
         ];
       case 'commodities':
         return [
           {
-            question: 'What are commodities?',
-            answer:
-              'Commodities are raw materials like metals, oil, and agricultural products that can be traded on financial markets.',
+            question: t('commoditiesFaq1'),
+            answer: t('commoditiesFaq1Answer'),
           },
           {
-            question: 'How do I trade commodities?',
-            answer:
-              'You can trade commodities through futures contracts, CFDs, or ETFs via our platform.',
+            question: t('commoditiesFaq2'),
+            answer: t('commoditiesFaq2Answer'),
           },
           {
-            question: 'What affects commodity prices?',
-            answer:
-              'Commodity prices are influenced by factors such as supply and demand, geopolitical events, and economic data.',
+            question: t('commoditiesFaq3'),
+            answer: t('commoditiesFaq3Answer'),
           },
           {
-            question: 'What are commodity trading hours?',
-            answer:
-              'Commodity markets are typically open from Sunday evening to Friday evening (in U.S. Eastern Time), but trading hours can vary depending on the commodity and exchange.',
+            question: t('commoditiesFaq4'),
+            answer: t('commoditiesFaq4Answer'),
           },
           {
-            question: 'Is trading commodities risky?',
-            answer:
-              'Yes, commodities can be volatile, so it’s important to use risk management strategies such as stop-loss orders.',
+            question: t('commoditiesFaq5'),
+            answer: t('commoditiesFaq5Answer'),
           },
         ];
       case 'energies':
         return [
           {
-            question: 'What are energy markets?',
-            answer:
-              'Energy markets involve trading natural resources like oil, gas, and renewable energy products.',
+            question: t('energiesFaq1'),
+            answer: t('energiesFaq1Answer'),
           },
           {
-            question: 'What affects energy prices?',
-            answer:
-              'Energy prices are influenced by factors like global supply, demand, geopolitical events, and weather.',
+            question: t('energiesFaq2'),
+            answer: t('energiesFaq2Answer'),
           },
           {
-            question: 'How do I trade energy assets?',
-            answer:
-              'Energy assets can be traded through CFDs, futures contracts, and ETFs via our platform.',
+            question: t('energiesFaq3'),
+            answer: t('energiesFaq3Answer'),
           },
           {
-            question: 'Can I trade oil during off-market hours?',
-            answer:
-              'Yes, oil is traded almost 24/7 globally due to its importance in the global economy.',
+            question: t('energiesFaq4'),
+            answer: t('energiesFaq4Answer'),
           },
           {
-            question: 'What is the role of OPEC in energy trading?',
-            answer:
-              'OPEC’s decisions on oil production affect supply and price, making it an important factor in energy market movements.',
+            question: t('energiesFaq5'),
+            answer: t('energiesFaq5Answer'),
           },
         ];
       case 'stocks':
         return [
           {
-            question: 'What is stock trading?',
-            answer:
-              'Stock trading involves buying and selling shares in companies. When you buy a stock, you own a portion of the company.',
+            question: t('stocksFaq1'),
+            answer: t('stocksFaq1Answer'),
           },
           {
-            question: 'How do I start trading stocks?',
-            answer:
-              'Simply open an account with Data FX, deposit funds, and start trading stocks using our platform.',
+            question: t('stocksFaq2'),
+            answer: t('stocksFaq2Answer'),
           },
           {
-            question: 'What factors influence stock prices?',
-            answer:
-              'Stock prices are affected by factors like company performance, economic indicators, news, and market sentiment.',
+            question: t('stocksFaq3'),
+            answer: t('stocksFaq3Answer'),
           },
           {
-            question: 'Can I trade stocks outside of market hours?',
-            answer:
-              'Yes, some brokers offer after-hours trading for stocks, although liquidity may be lower.',
+            question: t('stocksFaq4'),
+            answer: t('stocksFaq4Answer'),
           },
           {
-            question: 'What is a dividend?',
-            answer:
-              'A dividend is a payment made by a company to its shareholders, usually from profits. Not all stocks pay dividends.',
+            question: t('stocksFaq5'),
+            answer: t('stocksFaq5Answer'),
           },
         ];
       case 'crypto':
         return [
           {
-            question: 'What are cryptocurrencies?',
-            answer:
-              'Cryptocurrencies are digital currencies that use blockchain technology for secure, decentralized transactions.',
+            question: t('cryptoFaq1'),
+            answer: t('cryptoFaq1Answer'),
           },
           {
-            question: 'How do I start trading cryptocurrencies?',
-            answer:
-              'Open an account with Data FX, deposit funds, and start trading Bitcoin, Ethereum, and other cryptos.',
+            question: t('cryptoFaq2'),
+            answer: t('cryptoFaq2Answer'),
           },
           {
-            question: 'What affects cryptocurrency prices?',
-            answer:
-              'Cryptocurrency prices are influenced by market demand, regulatory news, adoption, and technological developments.',
+            question: t('cryptoFaq3'),
+            answer: t('cryptoFaq3Answer'),
           },
           {
-            question: 'Is cryptocurrency trading safe?',
-            answer:
-              'While cryptocurrencies are volatile, they can be traded safely by using secure platforms like Data FX.',
+            question: t('cryptoFaq4'),
+            answer: t('cryptoFaq4Answer'),
           },
           {
-            question: 'What is blockchain technology?',
-            answer:
-              'Blockchain is the technology that underpins cryptocurrencies, ensuring transparency, security, and decentralization.',
+            question: t('cryptoFaq5'),
+            answer: t('cryptoFaq5Answer'),
           },
         ];
       default:
-        return [
-          {
-            question: 'What is MetaTrader 5 (MT5)?',
-            answer:
-              'MetaTrader 5 (MT5) is an advanced trading platform that offers multi-asset trading, including Forex, stocks, commodities, and cryptocurrencies. It provides robust tools for technical analysis, charting, and automated trading through Expert Advisors (EAs).',
+        return null;
+    }
+  };
+
+  const getBenefits = (type) => {
+    switch (type.toLowerCase()) {
+      case 'forex':
+        return {
+          title: t('forexBenefitsTitle'),
+          desc1: {
+            title: t('forexBenefit1Title'),
+            desc: t('forexBenefit1Desc'),
           },
-          {
-            question: 'What features does MT5 offer?',
-            answer:
-              'MT5 includes advanced charting tools, multiple order types, technical indicators, algorithmic trading, and a depth of market (DOM) feature. The platform also supports hedging and netting, giving traders flexibility in their trading strategies.',
+          desc2: {
+            title: t('forexBenefit2Title'),
+            desc: t('forexBenefit2Desc'),
           },
-          {
-            question: 'Can I use Expert Advisors (EAs) on MT5?',
-            answer:
-              'Yes, MT5 fully supports Expert Advisors (EAs), allowing traders to automate their strategies and execute trades based on preset conditions. EAs can be customized or downloaded from the MetaTrader marketplace.',
+          desc3: {
+            title: t('forexBenefit3Title'),
+            desc: t('forexBenefit3Desc'),
           },
-          {
-            question: 'How can I access MT5 on Data FX?',
-            answer:
-              'You can access MT5 through various devices, including desktop, web, and mobile versions. Simply download the platform from Data FX’s website, or use the web-based version for easy access from any browser.',
+        };
+      case 'indices':
+        return {
+          title: t('indicesBenefitsTitle'),
+          desc1: {
+            title: t('indicesBenefit1Title'),
+            desc: t('indicesBenefit1Desc'),
           },
-          {
-            question: 'Does MT5 offer real-time data and analysis tools?',
-            answer:
-              'Yes, MT5 provides real-time market data, advanced charting features, and a wide range of technical analysis tools, including more than 80 built-in indicators and graphical objects to help traders make informed decisions.',
+          desc2: {
+            title: t('indicesBenefit2Title'),
+            desc: t('indicesBenefit2Desc'),
           },
-        ];
+          desc3: {
+            title: t('indicesBenefit3Title'),
+            desc: t('indicesBenefit3Desc'),
+          },
+        };
+      case 'commodities':
+        return {
+          title: t('commoditiesBenefitsTitle'),
+          desc1: {
+            title: t('commoditiesBenefit1Title'),
+            desc: t('commoditiesBenefit1Desc'),
+          },
+          desc2: {
+            title: t('commoditiesBenefit2Title'),
+            desc: t('commoditiesBenefit2Desc'),
+          },
+          desc3: {
+            title: t('commoditiesBenefit3Title'),
+            desc: t('commoditiesBenefit3Desc'),
+          },
+        };
+      case 'energies':
+        return {
+          title: t('energiesBenefitsTitle'),
+          desc1: {
+            title: t('energiesBenefit1Title'),
+            desc: t('energiesBenefit1Desc'),
+          },
+          desc2: {
+            title: t('energiesBenefit2Title'),
+            desc: t('energiesBenefit2Desc'),
+          },
+          desc3: {
+            title: t('energiesBenefit3Title'),
+            desc: t('energiesBenefit3Desc'),
+          },
+        };
+      case 'stocks':
+        return {
+          title: t('stocksBenefitsTitle'),
+          desc1: {
+            title: t('stocksBenefit1Title'),
+            desc: t('stocksBenefit1Desc'),
+          },
+          desc2: {
+            title: t('stocksBenefit2Title'),
+            desc: t('stocksBenefit2Desc'),
+          },
+          desc3: {
+            title: t('stocksBenefit3Title'),
+            desc: t('stocksBenefit3Desc'),
+          },
+        };
+      case 'crypto':
+        return {
+          title: t('cryptocurrenciesBenefitsTitle'),
+          desc1: {
+            title: t('cryptocurrenciesBenefit1Title'),
+            desc: t('cryptocurrenciesBenefit1Desc'),
+          },
+          desc2: {
+            title: t('cryptocurrenciesBenefit2Title'),
+            desc: t('cryptocurrenciesBenefit2Desc'),
+          },
+          desc3: {
+            title: t('cryptocurrenciesBenefit3Title'),
+            desc: t('cryptocurrenciesBenefit3Desc'),
+          },
+        };
+      default:
+        return null;
     }
   };
 
   const formattedMarketType = formatMarketType(marketType);
   const marketDescription = getMarketDescription(marketType);
   const faqs = getFaqs(marketType);
+  const benefits = getBenefits(marketType);
 
   return (
     <div className={styles.page}>
       <Header />
       <main className={styles.main}>
         <MarketBanner
-          title={`Trade ${formattedMarketType}`}
+          title={`${formattedMarketType}`}
           description={marketDescription}
         />
-        <BenefitsList marketType={formattedMarketType} />
+        <BenefitsList benefits={benefits} />
         <PriceTable marketType={marketType} />
         <EconomicCalendar />
         <FAQ faqs={faqs} />

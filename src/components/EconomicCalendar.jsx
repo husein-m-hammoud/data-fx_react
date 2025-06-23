@@ -1,8 +1,10 @@
 import { useEffect, useRef } from 'react';
 import styles from './EconomicCalendar.module.scss';
+import { useTranslation } from '../contexts/TranslationContext';
 
 const EconomicCalendar = () => {
   const containerRef = useRef(null);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const script = document.createElement('script');
@@ -29,11 +31,8 @@ const EconomicCalendar = () => {
   return (
     <section className={styles.calendar}>
       <div className={styles.container}>
-        <h2 className={styles.title}>Economic Calendar</h2>
-        <p className={styles.description}>
-          Stay ahead of market-moving events with the TradingView Economic
-          Calendar.
-        </p>
+        <h2 className={styles.title}>{t('economicCalendar')}</h2>
+        <p className={styles.description}>{t('economicCalendarDesc')}</p>
         <div className={styles.widgetWrapper}>
           <div ref={containerRef} />
         </div>

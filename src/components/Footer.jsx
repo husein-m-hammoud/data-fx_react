@@ -1,18 +1,17 @@
 import { Link } from 'react-router-dom';
 import styles from './Footer.module.scss';
+import { useTranslation } from '../contexts/TranslationContext';
 
 const Footer = () => {
+  const { t } = useTranslation();
+
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>
         <div className={styles.footerGrid}>
           <div className={styles.companyInfo}>
             <h3 className={styles.footerTitle}>Data FX</h3>
-            <p className={styles.companyDescription}>
-              DATA FX Inc. Registered BC #25250-2018 in Saint Vincent and the
-              Grenadines and approved by FSA to provide Forex and CFDs trading
-              services.
-            </p>
+            <p className={styles.companyDescription}>{t('dataFxFooterDesc')}</p>
             <div className={styles.socialLinks}>
               <a
                 href='https://www.facebook.com/people/Data-FX-inc/61563579251492/'
@@ -96,69 +95,69 @@ const Footer = () => {
           </div>
 
           <div className={styles.linksColumn}>
-            <h3 className={styles.footerTitle}>Quick Links</h3>
+            <h3 className={styles.footerTitle}>{t('quickLinks')}</h3>
             <ul className={styles.footerLinks}>
               <li>
                 <Link to='/' className={styles.footerLink}>
-                  Home
+                  {t('home')}
                 </Link>
               </li>
               <li>
                 <Link to='/trade' className={styles.footerLink}>
-                  Start Trading
+                  {t('header.startTrading')}
                 </Link>
               </li>
               <li>
                 <Link to='/platform' className={styles.footerLink}>
-                  Platform
+                  {t('header.platform')}
                 </Link>
               </li>
               <li>
                 <Link to='/company' className={styles.footerLink}>
-                  About Us
+                  {t('aboutUs')}
                 </Link>
               </li>
             </ul>
           </div>
 
           <div className={styles.linksColumn}>
-            <h3 className={styles.footerTitle}>Markets</h3>
+            <h3 className={styles.footerTitle}>{t('header.markets')}</h3>
             <ul className={styles.footerLinks}>
               <li>
                 <Link to='/markets/forex' className={styles.footerLink}>
-                  Forex
+                  {t('forex')}
                 </Link>
               </li>
               <li>
                 <Link to='/markets/indices' className={styles.footerLink}>
-                  Indices
+                  {t('indices')}
                 </Link>
               </li>
               <li>
                 <Link to='/markets/commodities' className={styles.footerLink}>
-                  Commodities
+                  {t('commodities')}
                 </Link>
               </li>
               <li>
                 <Link to='/markets/energies' className={styles.footerLink}>
-                  Energies
+                  {t('energies')}
                 </Link>
               </li>
               <li>
                 <Link to='/markets/stocks' className={styles.footerLink}>
-                  Stocks
+                  {t('stocks')}
                 </Link>
               </li>
               <li>
                 <Link to='/markets/crypto' className={styles.footerLink}>
-                  Cryptocurrencies
+                  {t('cryptocurrencies')}
                 </Link>
               </li>
             </ul>
           </div>
 
           <div className={styles.contactColumn}>
-            <h3 className={styles.footerTitle}>Contact</h3>
+            <h3 className={styles.footerTitle}>{t('contactUs')}</h3>
             <ul className={styles.contactList}>
               <li className={styles.contactItem}>
                 <svg
@@ -220,9 +219,9 @@ const Footer = () => {
                   />
                 </svg>
                 <div className={styles.address}>
-                  <p>Euro House, Richmond Hill Road</p>
-                  <p>P.O BOX 2897, Kingstown</p>
-                  <p>St. Vincent & the Grenadines</p>
+                  <p>{t('add1')}</p>
+                  <p>{t('add2')}</p>
+                  <p>{t('add3')}</p>
                 </div>
               </li>
             </ul>

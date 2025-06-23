@@ -8,45 +8,45 @@ import {
   Building,
   Bitcoin,
 } from 'lucide-react';
+import { useTranslation } from '../contexts/TranslationContext';
 
 const Markets = () => {
+  const { t } = useTranslation();
+
   const markets = [
     {
-      title: 'Forex',
-      description: 'Access over 100 currency pairs in the global forex market.',
+      title: t('forex'),
+      description: t('forexDesc'),
       icon: <TrendingUpDown />,
       link: '/markets/forex',
     },
     {
-      title: 'Indices',
-      description:
-        'Trade major global indices with competitive spreads and leverage.',
+      title: t('indices'),
+      description: t('indicesDesc'),
       icon: <LineChart />,
       link: '/markets/indices',
     },
     {
-      title: 'Commodities',
-      description: 'Trade precious metals, agricultural products, and more.',
+      title: t('commodities'),
+      description: t('commoditiesDesc'),
       icon: <BarChart />,
       link: '/markets/commodities',
     },
     {
-      title: 'Energies',
-      description: 'Trade crude oil, natural gas, and other energy assets.',
+      title: t('energies'),
+      description: t('energiesDesc'),
       icon: <Flame />,
       link: '/markets/energies',
     },
     {
-      title: 'Stocks',
-      description:
-        'Trade global stocks across sectors with competitive commissions.',
+      title: t('stocks'),
+      description: t('stocksDesc'),
       icon: <Building />,
       link: '/markets/stocks',
     },
     {
-      title: 'Cryptocurrencies',
-      description:
-        'Trade top cryptocurrencies like Bitcoin and Ethereum securely.',
+      title: t('cryptocurrencies'),
+      description: t('cryptocurrenciesDesc'),
       icon: <Bitcoin />,
       link: '/markets/crypto',
     },
@@ -56,10 +56,7 @@ const Markets = () => {
     <div className={styles.container}>
       <div className={styles.wrapper}>
         <div className={styles.header}>
-          <h2 className={styles.title}>Markets</h2>
-          <p className={styles.subtitle}>
-            Explore diverse trading opportunities across multiple asset classes
-          </p>
+          <h2 className={styles.title}>{t('markets')}</h2>
         </div>
 
         <div className={styles.marketsGrid}>
@@ -71,7 +68,7 @@ const Markets = () => {
               </div>
               <p className={styles.marketDescription}>{market.description}</p>
               <a href={market.link} className={styles.readMore}>
-                Read more
+                {t('readMore')}
               </a>
             </div>
           ))}

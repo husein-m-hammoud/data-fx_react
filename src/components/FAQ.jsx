@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import styles from './FAQ.module.scss';
+import { useTranslation } from '../contexts/TranslationContext';
 
 const FAQ = ({ faqs }) => {
+  const { t } = useTranslation();
   const [activeIndex, setActiveIndex] = useState(null);
 
   const toggleAccordion = (index) => {
@@ -12,10 +14,7 @@ const FAQ = ({ faqs }) => {
     <div className={styles.container}>
       <div className={styles.wrapper}>
         <div className={styles.header}>
-          <h2 className={styles.title}>Frequently Asked Questions</h2>
-          <p className={styles.description}>
-            Find quick answers to common questions about trading with Data FX.
-          </p>
+          <h2 className={styles.title}>{t('faq')}</h2>
         </div>
 
         <div className={styles.accordionContainer}>
