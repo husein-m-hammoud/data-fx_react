@@ -58,12 +58,13 @@ const BecomeBroker = () => {
   });
 
   const onSubmit = async (data) => {
+    const code = data.countryCode.split('-')[0];
     const payload = {
       email_form: 'Become Broker Application',
       from_email: data.email,
       first_name: data.firstName,
       last_name: data.lastName,
-      phone: data.phone,
+      phone: `${code} ${data.phone}`,
       contact_methods: data.contactMethods,
     };
 
@@ -171,7 +172,7 @@ const BecomeBroker = () => {
                             <SelectContent>
                               {countryCodes.map((country, index) => (
                                 <SelectItem
-                                  key={`${country.value}-${country.label}-${index}`}
+                                  key={`${country.label}-${index}`}
                                   value={`${country.value}-${country.label}`}
                                 >
                                   {country.label}
@@ -187,7 +188,7 @@ const BecomeBroker = () => {
 
                   <FormField
                     control={form.control}
-                    name='phoneNumber'
+                    name='phone'
                     render={({ field }) => (
                       <FormItem className={styles.formItem}>
                         <FormLabel className={styles.formLabel}>

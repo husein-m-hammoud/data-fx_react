@@ -16,7 +16,7 @@
   "startTradingBanner": "Start Trading with Data FX – Unlock Your Financial Future Today!​",
   "joinThousands": "Join thousands of successful traders and take advantage of tight spreads, low commissions, and cutting-edge trading tools. Whether you're just starting or are a seasoned trader, Data FX provides everything you need to succeed in the markets.",
   "startTradingNow": "Start Trading Now",
-  "tryDemo": "TryFreeDemo",
+  "tryDemo": "Try Free Demo",
   "whyDataFx": "Why Data FX?",
 
   "compPrice": "Competitive Pricing",
@@ -293,5 +293,8 @@
 
   "copyright1": "Risk Warning: Forex and CFDs are leveraged products that incur a high level of risk and a small adverse market movement may expose the client to lose the entire invested capital. The possibility exists that you could sustain a loss in excess of your deposited funds even if a stop loss is used and therefore, you should not speculate with capital that you cannot afford to lose and be aware of trading risks. DATA FX Inc. provides general information that does not take into account your objectives, financial situation or needs. The content of this website must not be interpreted as personal advice. Please ensure that you understand the risks involved and seek independent advice if necessary.",
   "copyright2": "Data FX Inc. offers global financial brokerage services. We do not provide services to nationals, citizens, or residents of the USA, Saint Vincent and the Grenadines, North Korea, or any other jurisdiction subject to restrictions or sanctions.",
-  "copyright3": "DATA FX Inc. Registered BC #25250-2018 in Saint Vincent and the Grenadines and approved by FSA to provide Forex and CFDs trading services."
+  "copyright3": "DATA FX Inc. Registered BC #25250-2018 in Saint Vincent and the Grenadines and approved by FSA to provide Forex and CFDs trading services.",
+
+  "demoBanner": "Request Your Demo Account with Data FX",
+  "demoDesc": "Experience the power of Data FX's trading platform with a free Demo Account. Practice your trading strategies in real market conditions without any risk. Open your demo account today and get started on your trading journey!"
 }

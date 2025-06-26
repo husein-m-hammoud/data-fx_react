@@ -1,9 +1,9 @@
-import React from "react";
-import { useForm, Controller } from "react-hook-form";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
+import React from 'react';
+import { useForm, Controller } from 'react-hook-form';
+import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 import {
   Form,
   FormField,
@@ -11,61 +11,74 @@ import {
   FormLabel,
   FormControl,
   FormMessage,
-} from "../components/ui/form";
-import { Input } from "../components/ui/input";
-import { Button } from "../components/ui/button";
-import { Checkbox } from "../components/ui/checkbox";
-import { toast } from "sonner";
-import styles from "./BecomeBroker.module.scss";
-import { sendEmail } from "../api/email";
+} from '../components/ui/form';
+import { Input } from '../components/ui/input';
+import { Button } from '../components/ui/button';
+import { Checkbox } from '../components/ui/checkbox';
+import { toast } from 'sonner';
+import styles from './BecomeBroker.module.scss';
+import { sendEmail } from '../api/email';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '../components/ui/select';
+import { countryCodes } from '../lib/countryCodes';
+import { useTranslation } from '../contexts/TranslationContext';
 
 const formSchema = z.object({
   firstName: z
     .string()
-    .min(2, { message: "First name must be at least 2 characters." }),
+    .min(2, { message: 'First name must be at least 2 characters.' }),
   lastName: z
     .string()
-    .min(2, { message: "Last name must be at least 2 characters." }),
-  email: z.string().email({ message: "Please enter a valid email address." }),
-  phone: z.string().min(5, { message: "Please enter a valid phone number." }),
+    .min(2, { message: 'Last name must be at least 2 characters.' }),
+  email: z.string().email({ message: 'Please enter a valid email address.' }),
+  phone: z.string().min(5, { message: 'Please enter a valid phone number.' }),
   contactMethods: z
     .array(z.string())
-    .min(1, { message: "Please select at least one contact method." }),
+    .min(1, { message: 'Please select at least one contact method.' }),
+  countryCode: z.string().min(1),
 });
 
 const Demo = () => {
+  const { t } = useTranslation();
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      firstName: "",
-      lastName: "",
-      email: "",
-      phone: "",
+      firstName: '',
+      lastName: '',
+      email: '',
+      phone: '',
       contactMethods: [],
+      countryCode: '',
     },
   });
 
   const onSubmit = async (data) => {
+    const code = data.countryCode.split('-')[0];
     const payload = {
-      email_form: "Demo Account", // Static sender
+      email_form: 'Demo Account', // Static sender
       from_email: data.email,
       first_name: data.firstName,
       last_name: data.lastName,
-      phone: data.phone,
+      phone: `${code} ${data.phone}`,
       contact_methods: data.contactMethods,
     };
 
     try {
       await sendEmail(payload);
-      toast.success("Application submitted successfully!", {
+      toast.success('Application submitted successfully!', {
         description:
-          "We will contact you shortly to discuss your IB application.",
+          'We will contact you shortly to discuss your IB application.',
       });
       form.reset();
     } catch (error) {
-      console.error("Send email error:", error);
-      toast.error("Failed to send application", {
-        description: error.message || "Something went wrong.",
+      console.error('Send email error:', error);
+      toast.error('Failed to send application', {
+        description: error.message || 'Something went wrong.',
       });
     }
   };
@@ -77,15 +90,8 @@ const Demo = () => {
       <main className={styles.main}>
         <section className={styles.heroSection}>
           <div className={styles.heroContainer}>
-            <h1 className={styles.heroTitle}>
-              Request Your Demo Account with Data FX
-            </h1>
-            <p className={styles.heroDescription}>
-              Experience the power of Data FX's trading platform with a free
-              Demo Account. Practice your trading strategies in real market
-              conditions without any risk. Open your demo account today and get
-              started on your trading journey!
-            </p>
+            <h1 className={styles.heroTitle}>{t('demoBanner')}</h1>
+            <p className={styles.heroDescription}>{t('demoDesc')}</p>
           </div>
         </section>
 
@@ -99,18 +105,14 @@ const Demo = () => {
                 <div className={styles.formRow}>
                   <FormField
                     control={form.control}
-                    name="firstName"
+                    name='firstName'
                     render={({ field }) => (
                       <FormItem className={styles.formItem}>
                         <FormLabel className={styles.formLabel}>
-                          First Name
+                          {t('firstName')}
                         </FormLabel>
                         <FormControl>
-                          <Input
-                            className={styles.formInput}
-                            placeholder="Enter your first name"
-                            {...field}
-                          />
+                          <Input className={styles.formInput} {...field} />
                         </FormControl>
                         <FormMessage className={styles.formMessage} />
                       </FormItem>
@@ -119,18 +121,14 @@ const Demo = () => {
 
                   <FormField
                     control={form.control}
-                    name="lastName"
+                    name='lastName'
                     render={({ field }) => (
                       <FormItem className={styles.formItem}>
                         <FormLabel className={styles.formLabel}>
-                          Last Name
+                          {t('lastName')}
                         </FormLabel>
                         <FormControl>
-                          <Input
-                            className={styles.formInput}
-                            placeholder="Enter your last name"
-                            {...field}
-                          />
+                          <Input className={styles.formInput} {...field} />
                         </FormControl>
                         <FormMessage className={styles.formMessage} />
                       </FormItem>
@@ -140,15 +138,16 @@ const Demo = () => {
 
                 <FormField
                   control={form.control}
-                  name="email"
+                  name='email'
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className={styles.formLabel}>Email</FormLabel>
+                      <FormLabel className={styles.formLabel}>
+                        {t('email')}
+                      </FormLabel>
                       <FormControl>
                         <Input
                           className={styles.formInput}
-                          type="email"
-                          placeholder="Enter your email address"
+                          type='email'
                           {...field}
                         />
                       </FormControl>
@@ -157,37 +156,70 @@ const Demo = () => {
                   )}
                 />
 
-                <FormField
-                  control={form.control}
-                  name="phone"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className={styles.formLabel}>Phone</FormLabel>
-                      <FormControl>
-                        <Input
-                          className={styles.formInput}
-                          placeholder="Enter your phone number"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage className={styles.formMessage} />
-                    </FormItem>
-                  )}
-                />
+                <div className={styles.formRow}>
+                  <FormField
+                    control={form.control}
+                    name='countryCode'
+                    render={({ field }) => (
+                      <FormItem className={styles.formItem}>
+                        <FormLabel className={styles.formLabel}>
+                          {t('countryCode')}
+                        </FormLabel>
+                        <FormControl>
+                          <Select
+                            value={field.value}
+                            onValueChange={field.onChange}
+                          >
+                            <SelectTrigger className={styles.formInput}>
+                              <SelectValue />
+                            </SelectTrigger>
+                            <SelectContent>
+                              {countryCodes.map((country, index) => (
+                                <SelectItem
+                                  key={`${country.label}-${index}`}
+                                  value={`${country.value}-${country.label}`}
+                                >
+                                  {country.label}
+                                </SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                        </FormControl>
+                        <FormMessage className={styles.formMessage} />
+                      </FormItem>
+                    )}
+                  />
+
+                  <FormField
+                    control={form.control}
+                    name='phone'
+                    render={({ field }) => (
+                      <FormItem className={styles.formItem}>
+                        <FormLabel className={styles.formLabel}>
+                          {t('phone')}
+                        </FormLabel>
+                        <FormControl>
+                          <Input className={styles.formInput} {...field} />
+                        </FormControl>
+                        <FormMessage className={styles.formMessage} />
+                      </FormItem>
+                    )}
+                  />
+                </div>
 
                 <div className={styles.contactMethodsGroup}>
                   <FormLabel className={styles.contactMethodsLabel}>
-                    Preferred Contact Method
+                    {t('preferredContact')}
                   </FormLabel>
                   <div className={styles.checkboxGroup}>
                     <FormField
                       control={form.control}
-                      name="contactMethods"
+                      name='contactMethods'
                       render={() => (
                         <FormItem className={styles.checkboxItem}>
                           <div className={styles.checkboxWrapper}>
                             <Controller
-                              name="contactMethods"
+                              name='contactMethods'
                               control={form.control}
                               render={({ field }) => {
                                 return (
@@ -197,17 +229,17 @@ const Demo = () => {
                                         <Checkbox
                                           className={styles.checkbox}
                                           checked={field.value?.includes(
-                                            "email"
+                                            'email'
                                           )}
                                           onCheckedChange={(checked) => {
                                             return checked
                                               ? field.onChange([
                                                   ...field.value,
-                                                  "email",
+                                                  'email',
                                                 ])
                                               : field.onChange(
                                                   field.value?.filter(
-                                                    (value) => value !== "email"
+                                                    (value) => value !== 'email'
                                                   )
                                                 );
                                           }}
@@ -216,7 +248,7 @@ const Demo = () => {
                                       <FormLabel
                                         className={styles.checkboxLabel}
                                       >
-                                        Email
+                                        {t('email')}
                                       </FormLabel>
                                     </div>
 
@@ -225,17 +257,17 @@ const Demo = () => {
                                         <Checkbox
                                           className={styles.checkbox}
                                           checked={field.value?.includes(
-                                            "phone"
+                                            'phone'
                                           )}
                                           onCheckedChange={(checked) => {
                                             return checked
                                               ? field.onChange([
                                                   ...field.value,
-                                                  "phone",
+                                                  'phone',
                                                 ])
                                               : field.onChange(
                                                   field.value?.filter(
-                                                    (value) => value !== "phone"
+                                                    (value) => value !== 'phone'
                                                   )
                                                 );
                                           }}
@@ -244,7 +276,7 @@ const Demo = () => {
                                       <FormLabel
                                         className={styles.checkboxLabel}
                                       >
-                                        Phone
+                                        {t('phone')}
                                       </FormLabel>
                                     </div>
 
@@ -253,18 +285,18 @@ const Demo = () => {
                                         <Checkbox
                                           className={styles.checkbox}
                                           checked={field.value?.includes(
-                                            "whatsapp"
+                                            'whatsapp'
                                           )}
                                           onCheckedChange={(checked) => {
                                             return checked
                                               ? field.onChange([
                                                   ...field.value,
-                                                  "whatsapp",
+                                                  'whatsapp',
                                                 ])
                                               : field.onChange(
                                                   field.value?.filter(
                                                     (value) =>
-                                                      value !== "whatsapp"
+                                                      value !== 'whatsapp'
                                                   )
                                                 );
                                           }}
@@ -273,7 +305,7 @@ const Demo = () => {
                                       <FormLabel
                                         className={styles.checkboxLabel}
                                       >
-                                        WhatsApp
+                                        {t('whatsapp')}
                                       </FormLabel>
                                     </div>
                                   </>
@@ -289,8 +321,8 @@ const Demo = () => {
                 </div>
 
                 <div className={styles.submitContainer}>
-                  <Button type="submit" className={styles.submitButton}>
-                    Submit
+                  <Button type='submit' className={styles.submitButton}>
+                    {t('submit')}
                   </Button>
                 </div>
               </form>

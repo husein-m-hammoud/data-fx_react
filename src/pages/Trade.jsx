@@ -38,7 +38,7 @@ const formSchema = z.object({
     .string()
     .min(2, { message: 'Last name must be at least 2 characters.' }),
   email: z.string().email({ message: 'Please enter a valid email address.' }),
-  countryCode: z.string().min(1, { message: 'Please select a country code.' }),
+  countryCode: z.string().min(1),
   phoneNumber: z
     .string()
     .min(5, { message: 'Please enter a valid phone number.' }),
@@ -62,12 +62,13 @@ const Trade = () => {
   });
 
   const onSubmit = async (data) => {
+    const code = data.countryCode.split('-')[0];
     const payload = {
       email_form: 'Trading Account',
       from_email: data.email,
       first_name: data.firstName,
       last_name: data.lastName,
-      phone: `${data.countryCode} ${data.phoneNumber}`,
+      phone: `${code} ${data.phoneNumber}`,
       contact_methods: data.contactMethods,
     };
 
@@ -157,22 +158,26 @@ const Trade = () => {
 
                 <div className={styles.phoneGroup}>
                   <FormField
-                    name='countryCode'
                     control={form.control}
+                    name='countryCode'
                     render={({ field }) => (
-                      <FormItem className={styles.countryCode}>
+                      <FormItem className={styles.formItem}>
                         <FormLabel className={styles.formLabel}>
                           {t('countryCode')}
                         </FormLabel>
                         <FormControl>
-                          <Select {...field}>
+                          <Select
+                            value={field.value}
+                            onValueChange={field.onChange}
+                          >
                             <SelectTrigger className={styles.formInput}>
                               <SelectValue />
                             </SelectTrigger>
                             <SelectContent>
-                              {countryCodes.map((country) => (
+                              {countryCodes.map((country, index) => (
                                 <SelectItem
-                                  key={`${country.value}` + `${country.label}`}
+                                  key={`${country.label}-${index}`}
+                                  value={`${country.value}-${country.label}`}
                                 >
                                   {country.label}
                                 </SelectItem>
