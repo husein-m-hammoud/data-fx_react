@@ -230,9 +230,9 @@ const Footer = () => {
 
         <div className={styles.bottomFooter}>
           <div className={styles.bottomContent}>
-            <p className={styles.copyright}>
-              © 2025 Data FX. All rights reserved.
-            </p>
+            <p className={styles.copyright}>{t('copyright1')}</p>
+            <p className={styles.copyright}>{t('copyright2')}</p>
+            <p className={styles.copyright}>{t('copyright3')}</p>
           </div>
         </div>
       </div>

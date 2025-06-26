@@ -19,6 +19,14 @@ import { toast } from 'sonner';
 import styles from './BecomeBroker.module.scss';
 import { sendEmail } from '../api/email';
 import { useTranslation } from '../contexts/TranslationContext';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '../components/ui/select';
+import { countryCodes } from '../lib/countryCodes';
 
 const formSchema = z.object({
   firstName: z
@@ -32,6 +40,7 @@ const formSchema = z.object({
   contactMethods: z
     .array(z.string())
     .min(1, { message: 'Please select at least one contact method.' }),
+  countryCode: z.string().min(1),
 });
 
 const BecomeBroker = () => {
@@ -44,12 +53,13 @@ const BecomeBroker = () => {
       email: '',
       phone: '',
       contactMethods: [],
+      countryCode: '',
     },
   });
 
   const onSubmit = async (data) => {
     const payload = {
-      email_form: 'Become Broker Application', // Sender or static website email
+      email_form: 'Become Broker Application',
       from_email: data.email,
       first_name: data.firstName,
       last_name: data.lastName,
@@ -126,17 +136,49 @@ const BecomeBroker = () => {
                     )}
                   />
                 </div>
+                <FormField
+                  control={form.control}
+                  name='email'
+                  render={({ field }) => (
+                    <FormItem className={styles.formItem}>
+                      <FormLabel className={styles.formLabel}>
+                        {t('email')}
+                      </FormLabel>
+                      <FormControl>
+                        <Input className={styles.formInput} {...field} />
+                      </FormControl>
+                      <FormMessage className={styles.formMessage} />
+                    </FormItem>
+                  )}
+                />
                 <div className={styles.formRow}>
                   <FormField
                     control={form.control}
-                    name='email'
+                    name='countryCode'
                     render={({ field }) => (
                       <FormItem className={styles.formItem}>
                         <FormLabel className={styles.formLabel}>
-                          {t('email')}
+                          {t('countryCode')}
                         </FormLabel>
                         <FormControl>
-                          <Input className={styles.formInput} {...field} />
+                          <Select
+                            value={field.value}
+                            onValueChange={field.onChange}
+                          >
+                            <SelectTrigger className={styles.formInput}>
+                              <SelectValue />
+                            </SelectTrigger>
+                            <SelectContent>
+                              {countryCodes.map((country, index) => (
+                                <SelectItem
+                                  key={`${country.value}-${country.label}-${index}`}
+                                  value={`${country.value}-${country.label}`}
+                                >
+                                  {country.label}
+                                </SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
                         </FormControl>
                         <FormMessage className={styles.formMessage} />
                       </FormItem>
@@ -145,7 +187,7 @@ const BecomeBroker = () => {
 
                   <FormField
                     control={form.control}
-                    name='phone'
+                    name='phoneNumber'
                     render={({ field }) => (
                       <FormItem className={styles.formItem}>
                         <FormLabel className={styles.formLabel}>

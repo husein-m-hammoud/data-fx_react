@@ -28,6 +28,7 @@ import { Checkbox } from '../components/ui/checkbox';
 import { toast } from 'sonner';
 import styles from './Trade.module.scss';
 import { useTranslation } from '../contexts/TranslationContext';
+import { countryCodes } from '../lib/countryCodes';
 
 const formSchema = z.object({
   firstName: z
@@ -46,19 +47,6 @@ const formSchema = z.object({
     .min(1, { message: 'Please select at least one contact method.' }),
 });
 
-const countryCodes = [
-  { value: '+1', label: 'United States (+1)' },
-  { value: '+44', label: 'United Kingdom (+44)' },
-  { value: '+33', label: 'France (+33)' },
-  { value: '+49', label: 'Germany (+49)' },
-  { value: '+81', label: 'Japan (+81)' },
-  { value: '+86', label: 'China (+86)' },
-  { value: '+91', label: 'India (+91)' },
-  { value: '+61', label: 'Australia (+61)' },
-  { value: '+7', label: 'Russia (+7)' },
-  { value: '+55', label: 'Brazil (+55)' },
-];
-
 const Trade = () => {
   const { t } = useTranslation();
   const form = useForm({
@@ -75,7 +63,7 @@ const Trade = () => {
 
   const onSubmit = async (data) => {
     const payload = {
-      email_form: 'Trading Account', // static sender
+      email_form: 'Trading Account',
       from_email: data.email,
       first_name: data.firstName,
       last_name: data.lastName,
@@ -169,6 +157,35 @@ const Trade = () => {
 
                 <div className={styles.phoneGroup}>
                   <FormField
+                    name='countryCode'
+                    control={form.control}
+                    render={({ field }) => (
+                      <FormItem className={styles.countryCode}>
+                        <FormLabel className={styles.formLabel}>
+                          {t('countryCode')}
+                        </FormLabel>
+                        <FormControl>
+                          <Select {...field}>
+                            <SelectTrigger className={styles.formInput}>
+                              <SelectValue />
+                            </SelectTrigger>
+                            <SelectContent>
+                              {countryCodes.map((country) => (
+                                <SelectItem
+                                  key={`${country.value}` + `${country.label}`}
+                                >
+                                  {country.label}
+                                </SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                        </FormControl>
+                        <FormMessage className={styles.formMessage} />
+                      </FormItem>
+                    )}
+                  />
+
+                  <FormField
                     control={form.control}
                     name='phoneNumber'
                     render={({ field }) => (
@@ -199,97 +216,44 @@ const Trade = () => {
                             <Controller
                               name='contactMethods'
                               control={form.control}
-                              render={({ field }) => {
-                                return (
-                                  <>
-                                    <div className={styles.checkboxContainer}>
-                                      <FormControl>
-                                        <Checkbox
-                                          className={styles.checkbox}
-                                          checked={field.value?.includes(
-                                            'email'
-                                          )}
-                                          onCheckedChange={(checked) => {
-                                            return checked
-                                              ? field.onChange([
-                                                  ...field.value,
-                                                  'email',
-                                                ])
-                                              : field.onChange(
-                                                  field.value?.filter(
-                                                    (value) => value !== 'email'
-                                                  )
-                                                );
-                                          }}
-                                        />
-                                      </FormControl>
-                                      <FormLabel
-                                        className={styles.checkboxLabel}
+                              render={({ field }) => (
+                                <>
+                                  {['email', 'whatsapp', 'telegram'].map(
+                                    (method) => (
+                                      <div
+                                        key={method}
+                                        className={styles.checkboxContainer}
                                       >
-                                        {t('email')}
-                                      </FormLabel>
-                                    </div>
-
-                                    <div className={styles.checkboxContainer}>
-                                      <FormControl>
-                                        <Checkbox
-                                          className={styles.checkbox}
-                                          checked={field.value?.includes(
-                                            'whatsapp'
-                                          )}
-                                          onCheckedChange={(checked) => {
-                                            return checked
-                                              ? field.onChange([
-                                                  ...field.value,
-                                                  'whatsapp',
-                                                ])
-                                              : field.onChange(
-                                                  field.value?.filter(
-                                                    (value) =>
-                                                      value !== 'whatsapp'
+                                        <FormControl>
+                                          <Checkbox
+                                            className={styles.checkbox}
+                                            checked={field.value?.includes(
+                                              method
+                                            )}
+                                            onCheckedChange={(checked) =>
+                                              checked
+                                                ? field.onChange([
+                                                    ...field.value,
+                                                    method,
+                                                  ])
+                                                : field.onChange(
+                                                    field.value?.filter(
+                                                      (v) => v !== method
+                                                    )
                                                   )
-                                                );
-                                          }}
-                                        />
-                                      </FormControl>
-                                      <FormLabel
-                                        className={styles.checkboxLabel}
-                                      >
-                                        {t('whatsapp')}
-                                      </FormLabel>
-                                    </div>
-
-                                    <div className={styles.checkboxContainer}>
-                                      <FormControl>
-                                        <Checkbox
-                                          className={styles.checkbox}
-                                          checked={field.value?.includes(
-                                            'telegram'
-                                          )}
-                                          onCheckedChange={(checked) => {
-                                            return checked
-                                              ? field.onChange([
-                                                  ...field.value,
-                                                  'telegram',
-                                                ])
-                                              : field.onChange(
-                                                  field.value?.filter(
-                                                    (value) =>
-                                                      value !== 'telegram'
-                                                  )
-                                                );
-                                          }}
-                                        />
-                                      </FormControl>
-                                      <FormLabel
-                                        className={styles.checkboxLabel}
-                                      >
-                                        {t('telegram')}
-                                      </FormLabel>
-                                    </div>
-                                  </>
-                                );
-                              }}
+                                            }
+                                          />
+                                        </FormControl>
+                                        <FormLabel
+                                          className={styles.checkboxLabel}
+                                        >
+                                          {t(method)}
+                                        </FormLabel>
+                                      </div>
+                                    )
+                                  )}
+                                </>
+                              )}
                             />
                           </div>
                           <FormMessage className={styles.formMessage} />
