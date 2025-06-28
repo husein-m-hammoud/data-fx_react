@@ -316,7 +316,7 @@ const MarketPage = () => {
           description={marketDescription}
         />
         <BenefitsList benefits={benefits} />
-        <PriceTable marketType={marketType} />
+        <PriceTable marketType={marketType}  />
         <EconomicCalendar />
         <FAQ faqs={faqs} />
       </main>
