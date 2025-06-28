@@ -60,7 +60,7 @@ const Footer = () => {
                   xmlns='http://www.w3.org/2000/svg'
                   fill='currentColor'
                 >
-                  <g id='SVGRepo_bgCarrier' strokeWidth='0'></g>
+                  <g id='SVGRepo_bgCarrier' stroke-width='0'></g>
                   <g
                     id='SVGRepo_tracerCarrier'
                     strokeLinecap='round'
@@ -69,7 +69,7 @@ const Footer = () => {
                   <g id='SVGRepo_iconCarrier'>
                     <path
                       stroke='#000000'
-                      strokeWidth='12'
+                      stroke-width='12'
                       d='M23.073 88.132s65.458-26.782 88.16-36.212c8.702-3.772 38.215-15.843 38.215-15.843s13.621-5.28 12.486 7.544c-.379 5.281-3.406 23.764-6.433 43.756-4.54 28.291-9.459 59.221-9.459 59.221s-.756 8.676-7.188 10.185c-6.433 1.509-17.027-5.281-18.919-6.79-1.513-1.132-28.377-18.106-38.214-26.404-2.649-2.263-5.676-6.79.378-12.071 13.621-12.447 29.891-27.913 39.728-37.72 4.54-4.527 9.081-15.089-9.837-2.264-26.864 18.483-53.35 35.835-53.35 35.835s-6.053 3.772-17.404.377c-11.351-3.395-24.594-7.921-24.594-7.921s-9.08-5.659 6.433-11.693Z'
                     ></path>
                   </g>
@@ -169,7 +169,7 @@ const Footer = () => {
                   <path
                     strokeLinecap='round'
                     strokeLinejoin='round'
-                    strokeWidth='2'
+                    stroke-width='2'
                     d='M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z'
                   />
                 </svg>
@@ -190,7 +190,7 @@ const Footer = () => {
                   <path
                     strokeLinecap='round'
                     strokeLinejoin='round'
-                    strokeWidth='2'
+                    stroke-width='2'
                     d='M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z'
                   />
                 </svg>
@@ -208,13 +208,13 @@ const Footer = () => {
                   <path
                     strokeLinecap='round'
                     strokeLinejoin='round'
-                    strokeWidth='2'
+                    stroke-width='2'
                     d='M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z'
                   />
                   <path
                     strokeLinecap='round'
                     strokeLinejoin='round'
-                    strokeWidth='2'
+                    stroke-width='2'
                     d='M15 11a3 3 0 11-6 0 3 3 0 016 0z'
                   />
                 </svg>
