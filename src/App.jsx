@@ -22,7 +22,7 @@ const App = () => (
       <TranslationProvider>
         <Toaster />
         <Sonner />
-        <BrowserRouter basename="/">
+        <BrowserRouter>
           <Routes>
             <Route path='/' element={<Index />} />
             <Route path='/markets/:marketType' element={<MarketPage />} />
@@ -32,7 +32,6 @@ const App = () => (
             <Route path='/partners' element={<Partners />} />
             <Route path='/become-broker' element={<BecomeBroker />} />
             <Route path='/demo' element={<Demo />} />
-            <Route path='*' element={<NotFound />} />
           </Routes>
         </BrowserRouter>
       </TranslationProvider>
