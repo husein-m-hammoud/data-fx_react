@@ -22,7 +22,7 @@ const App = () => (
       <TranslationProvider>
         <Toaster />
         <Sonner />
-        <BrowserRouter>
+        <BrowserRouter basename="/">
           <Routes>
             <Route path='/' element={<Index />} />
             <Route path='/markets/:marketType' element={<MarketPage />} />
