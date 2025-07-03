@@ -72,7 +72,7 @@ const Demo = () => {
       await sendEmail(payload);
       toast.success('Application submitted successfully!', {
         description:
-          'We will contact you shortly to discuss your IB application.',
+          'We’ll contact you shortly with your login details.',
       });
       form.reset();
     } catch (error) {
