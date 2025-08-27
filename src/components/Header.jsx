@@ -1,12 +1,15 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import styles from './Header.module.scss';
-import LanguageSelector from './LanguageSelector';
-import { useTranslation } from '../contexts/TranslationContext';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import styles from "./Header.module.scss";
+import LanguageSelector from "./LanguageSelector";
+import { useTranslation } from "../contexts/TranslationContext";
+import { User, LogIn, UserPlus } from "lucide-react";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMarketsDropdownOpen, setIsMarketsDropdownOpen] = useState(false);
+  const [isUserDropdownOpen, setIsUserDropdownOpen] = useState(false);
+
   const { t } = useTranslation();
 
   const toggleMenu = () => {
@@ -18,13 +21,18 @@ const Header = () => {
     setIsMarketsDropdownOpen(!isMarketsDropdownOpen);
   };
 
+  const toggleUserDropdown = (e) => {
+    e.preventDefault();
+    setIsUserDropdownOpen(!isUserDropdownOpen);
+  };
+
   return (
     <header className={styles.header}>
       <div className={styles.container}>
         <div className={styles.headerContent}>
           <div className={styles.logoContainer}>
-            <Link to='/' className={styles.logo}>
-              <img src='/img/data-fx-logo.png' alt='Data FX Logo' />
+            <Link to="/" className={styles.logo}>
+              <img src="/img/data-fx-logo.png" alt="Data FX Logo" />
             </Link>
           </div>
 
@@ -33,24 +41,24 @@ const Header = () => {
             <button onClick={toggleMenu} className={styles.menuButton}>
               <svg
                 className={styles.menuIcon}
-                fill='none'
-                stroke='currentColor'
-                viewBox='0 0 24 24'
-                xmlns='http://www.w3.org/2000/svg'
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
               >
                 {isMenuOpen ? (
                   <path
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                    stroke-width='2'
-                    d='M6 18L18 6M6 6l12 12'
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    stroke-width="2"
+                    d="M6 18L18 6M6 6l12 12"
                   ></path>
                 ) : (
                   <path
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                    stroke-width='2'
-                    d='M4 6h16M4 12h16M4 18h16'
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    stroke-width="2"
+                    d="M4 6h16M4 12h16M4 18h16"
                   ></path>
                 )}
               </svg>
@@ -59,58 +67,87 @@ const Header = () => {
 
           {/* Desktop Navigation */}
           <nav className={styles.desktopNav}>
-            <Link to='/trade' className={styles.navLink}>
-              {t('header.startTrading')}
+            <Link to="/trade" className={styles.navLink}>
+              {t("header.startTrading")}
             </Link>
 
             <div className={styles.dropdown}>
               <button className={styles.dropdownTrigger}>
-                {t('header.markets')}
+                {t("header.markets")}
               </button>
               <div className={styles.dropdownContent}>
-                <Link to='/markets/forex' className={styles.dropdownItem}>
-                  {t('header.markets.forex')}
+                <Link to="/markets/forex" className={styles.dropdownItem}>
+                  {t("header.markets.forex")}
                 </Link>
-                <Link to='/markets/indices' className={styles.dropdownItem}>
-                  {t('header.markets.indices')}
+                <Link to="/markets/indices" className={styles.dropdownItem}>
+                  {t("header.markets.indices")}
                 </Link>
-                <Link to='/markets/commodities' className={styles.dropdownItem}>
-                  {t('header.markets.commodities')}
+                <Link to="/markets/commodities" className={styles.dropdownItem}>
+                  {t("header.markets.commodities")}
                 </Link>
-                <Link to='/markets/energies' className={styles.dropdownItem}>
-                  {t('header.markets.energies')}
+                <Link to="/markets/energies" className={styles.dropdownItem}>
+                  {t("header.markets.energies")}
                 </Link>
-                <Link to='/markets/stocks' className={styles.dropdownItem}>
-                  {t('header.markets.stocks')}
+                <Link to="/markets/stocks" className={styles.dropdownItem}>
+                  {t("header.markets.stocks")}
                 </Link>
-                <Link to='/markets/crypto' className={styles.dropdownItem}>
-                  {t('header.markets.crypto')}
+                <Link to="/markets/crypto" className={styles.dropdownItem}>
+                  {t("header.markets.crypto")}
                 </Link>
               </div>
             </div>
 
-            <Link to='/company' className={styles.navLink}>
-              {t('header.company')}
+            <Link to="/company" className={styles.navLink}>
+              {t("header.company")}
             </Link>
-            <Link to='/platform' className={styles.navLink}>
-              {t('header.platform')}
+            <Link to="/platform" className={styles.navLink}>
+              {t("header.platform")}
             </Link>
-            <Link to='/partners' className={styles.navLink}>
-              {t('header.partners')}
+            <Link to="/partners" className={styles.navLink}>
+              {t("header.partners")}
             </Link>
             <LanguageSelector />
+            <div className={styles.dropdown}>
+              <button className={styles.dropdownTrigger}>
+                <User size={18} strokeWidth={2} />
+              </button>
+              <div className={styles.dropdownContent}>
+                <Link
+                  to="https://my.data-fx.net/en/login"
+                  className={styles.dropdownItem}
+                >
+                  <LogIn
+                    size={16}
+                    strokeWidth={2}
+                    className={styles.login_icon}
+                  />
+                  {t("header.signIn")}
+                </Link>
+                <Link
+                  to="https://my.data-fx.net/en/register"
+                  className={styles.dropdownItem}
+                >
+                  <UserPlus
+                    size={16}
+                    strokeWidth={2}
+                    className={styles.login_icon}
+                  />
+                  {t("header.signUp")}
+                </Link>
+              </div>
+            </div>
           </nav>
         </div>
 
         {/* Mobile Navigation */}
         <div
           className={`${styles.mobileNav} ${
-            isMenuOpen ? styles.mobileNavOpen : ''
+            isMenuOpen ? styles.mobileNavOpen : ""
           }`}
         >
           <div className={styles.mobileNavLinks}>
-            <Link to='/trade' className={styles.mobileNavLink}>
-              {t('header.startTrading')}
+            <Link to="/trade" className={styles.mobileNavLink}>
+              {t("header.startTrading")}
             </Link>
 
             <div className={styles.mobileDropdown}>
@@ -118,73 +155,91 @@ const Header = () => {
                 className={styles.mobileDropdownTrigger}
                 onClick={toggleMarketsDropdown}
               >
-                {t('header.markets')}
+                {t("header.markets")}
                 <svg
                   className={`${styles.chevron} ${
-                    isMarketsDropdownOpen ? styles.rotate : ''
+                    isMarketsDropdownOpen ? styles.rotate : ""
                   }`}
-                  fill='none'
-                  stroke='currentColor'
-                  viewBox='0 0 24 24'
-                  xmlns='http://www.w3.org/2000/svg'
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
                 >
                   <path
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                    stroke-width='2'
-                    d='M19 9l-7 7-7-7'
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
                   ></path>
                 </svg>
               </button>
               <div
                 className={`${styles.mobileDropdownContent} ${
-                  isMarketsDropdownOpen ? styles.show : ''
+                  isMarketsDropdownOpen ? styles.show : ""
                 }`}
               >
-                <Link to='/markets/forex' className={styles.mobileDropdownItem}>
-                  {t('header.markets.forex')}
+                <Link to="/markets/forex" className={styles.mobileDropdownItem}>
+                  {t("header.markets.forex")}
                 </Link>
                 <Link
-                  to='/markets/indices'
+                  to="/markets/indices"
                   className={styles.mobileDropdownItem}
                 >
-                  {t('header.markets.indices')}
+                  {t("header.markets.indices")}
                 </Link>
                 <Link
-                  to='/markets/commodities'
+                  to="/markets/commodities"
                   className={styles.mobileDropdownItem}
                 >
-                  {t('header.markets.commodities')}
+                  {t("header.markets.commodities")}
                 </Link>
                 <Link
-                  to='/markets/energies'
+                  to="/markets/energies"
                   className={styles.mobileDropdownItem}
                 >
-                  {t('header.markets.energies')}
+                  {t("header.markets.energies")}
                 </Link>
                 <Link
-                  to='/markets/stocks'
+                  to="/markets/stocks"
                   className={styles.mobileDropdownItem}
                 >
-                  {t('header.markets.stocks')}
+                  {t("header.markets.stocks")}
                 </Link>
                 <Link
-                  to='/markets/crypto'
+                  to="/markets/crypto"
                   className={styles.mobileDropdownItem}
                 >
-                  {t('header.markets.crypto')}
+                  {t("header.markets.crypto")}
                 </Link>
               </div>
             </div>
 
-            <Link to='/company' className={styles.mobileNavLink}>
-              {t('header.company')}
+            <Link to="/company" className={styles.mobileNavLink}>
+              {t("header.company")}
             </Link>
-            <Link to='/platform' className={styles.mobileNavLink}>
-              {t('header.platform')}
+            <Link to="/platform" className={styles.mobileNavLink}>
+              {t("header.platform")}
             </Link>
-            <Link to='/partners' className={styles.mobileNavLink}>
-              {t('header.partners')}
+            <Link to="/partners" className={styles.mobileNavLink}>
+              {t("header.partners")}
+            </Link>
+            <Link
+              to="https://my.data-fx.net/en/login"
+              className={styles.mobileNavLink}
+            >
+              <LogIn size={16} strokeWidth={2} className={styles.login_icon} />
+              {t("header.signIn")}
+            </Link>
+            <Link
+              to="https://my.data-fx.net/en/register"
+              className={styles.mobileNavLink}
+            >
+              <UserPlus
+                size={16}
+                strokeWidth={2}
+                className={styles.login_icon}
+              />
+              {t("header.signUp")}
             </Link>
             <div className={styles.mobileLanguageSelector}>
               <LanguageSelector />
