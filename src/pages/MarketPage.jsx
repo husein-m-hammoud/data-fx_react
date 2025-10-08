@@ -301,6 +301,10 @@ const MarketPage = () => {
         return null;
     }
   };
+  function capitalize(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
 
   const formattedMarketType = formatMarketType(marketType);
   const marketDescription = getMarketDescription(marketType);
@@ -314,6 +318,7 @@ const MarketPage = () => {
         <MarketBanner
           title={`${formattedMarketType}`}
           description={marketDescription}
+          marketType={t(`Trade ${capitalize(marketType)}`)}
         />
         <BenefitsList benefits={benefits} />
         <PriceTable marketType={marketType}  />

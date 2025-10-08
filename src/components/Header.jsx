@@ -67,7 +67,7 @@ const Header = () => {
 
           {/* Desktop Navigation */}
           <nav className={styles.desktopNav}>
-            <Link to="/trade" className={styles.navLink}>
+            <Link to="https://my.data-fx.net/en/register" className={styles.navLink}>
               {t("header.startTrading")}
             </Link>
 
@@ -103,11 +103,12 @@ const Header = () => {
             <Link to="/platform" className={styles.navLink}>
               {t("header.platform")}
             </Link>
-            <Link to="/partners" className={styles.navLink}>
-              {t("header.partners")}
+            
+            <Link to="https://my.data-fx.net/en/login" className={styles.navLink}>
+             {t("header.signIn")}
             </Link>
             <LanguageSelector />
-            <div className={styles.dropdown}>
+            {/* <div className={styles.dropdown}>
               <button className={styles.dropdownTrigger}>
                 <User size={18} strokeWidth={2} />
               </button>
@@ -135,7 +136,7 @@ const Header = () => {
                   {t("header.signUp")}
                 </Link>
               </div>
-            </div>
+            </div> */}
           </nav>
         </div>
 
@@ -146,7 +147,7 @@ const Header = () => {
           }`}
         >
           <div className={styles.mobileNavLinks}>
-            <Link to="/trade" className={styles.mobileNavLink}>
+            <Link to="https://my.data-fx.net/en/register" className={styles.mobileNavLink}>
               {t("header.startTrading")}
             </Link>
 
@@ -229,17 +230,6 @@ const Header = () => {
             >
               <LogIn size={16} strokeWidth={2} className={styles.login_icon} />
               {t("header.signIn")}
-            </Link>
-            <Link
-              to="https://my.data-fx.net/en/register"
-              className={styles.mobileNavLink}
-            >
-              <UserPlus
-                size={16}
-                strokeWidth={2}
-                className={styles.login_icon}
-              />
-              {t("header.signUp")}
             </Link>
             <div className={styles.mobileLanguageSelector}>
               <LanguageSelector />

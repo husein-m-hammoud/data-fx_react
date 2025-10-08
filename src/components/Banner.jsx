@@ -17,11 +17,11 @@ const Banner = () => {
             <h1 className={styles.title}>{t('startTradingBanner')}</h1>
             <p className={styles.subtitle}>{t('joinThousands')}</p>
             <div className={styles.buttons}>
-              <Link to='/trade' className={styles.primaryButton}>
+              <Link to="https://my.data-fx.net/en/register" className={styles.primaryButton}>
                 {t('startTradingNow')}{' '}
                 <ArrowRight className={styles.buttonIcon} />
               </Link>
-              <Link to='/demo'>
+              <Link to="https://my.data-fx.net/en/register">
                 <button className={styles.secondaryButton}>
                   {t('tryDemo')}
                 </button>

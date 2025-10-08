@@ -104,7 +104,7 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/trade" className={styles.footerLink}>
+                <Link to="https://my.data-fx.net/en/register" className={styles.footerLink}>
                   {t("header.startTrading")}
                 </Link>
               </li>
