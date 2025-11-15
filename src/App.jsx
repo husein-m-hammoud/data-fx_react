@@ -9,6 +9,7 @@ import Company from './pages/Company';
 import Trade from './pages/Trade';
 import NotFound from './pages/NotFound';
 import Platform from './pages/Platform';
+import DepositIntent from './pages/DepositIntent';
 import Partners from './pages/Partners';
 import { TranslationProvider } from './contexts/TranslationContext';
 import BecomeBroker from './pages/BecomeBroker';
@@ -29,6 +30,7 @@ const App = () => (
             <Route path='/company' element={<Company />} />
             <Route path='/trade' element={<Trade />} />
             <Route path='/platform' element={<Platform />} />
+            <Route path='/deposit' element={<DepositIntent />} />
             <Route path='/partners' element={<Partners />} />
             <Route path='/become-broker' element={<BecomeBroker />} />
             <Route path='/demo' element={<Demo />} />

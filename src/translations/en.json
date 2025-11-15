@@ -303,5 +303,16 @@
     "Trade Crypto": "Trade Crypto",
     "Trade Commodities": "Trade Commodities",
     "Trade Metals": "Trade Metals",
-    "Trade Indices": "Trade Indices"
+    "Trade Indices": "Trade Indices",
+
+    "createDepositIntent": "Create Deposit Intent",
+    "enterMT5AndGetDepositAddress": "Enter your MT5 login to generate a deposit address.",
+    "enterMt5Login": "Enter MT5 Login",
+    "generateAddress": "Generate Address",
+    "pleaseEnterMT5Login": "Please enter your MT5 Login.",
+    "somethingWentWrong": "Something went wrong. Try again.",
+    "paymentAddress": "Your Deposit Address",
+    "expiresIn": "Expires in",
+    "expired": "Expired",
+    "addressWillExpireWarning": "This address will expire. After the timer ends, you must generate a new one."
 }
